@@ -1,0 +1,90 @@
+'fileTypes': []
+'name': 'EDASM'
+'patterns': [
+  {
+    'include': '#M6502'
+  }
+  {
+    'include': '#M65C02'
+  }
+  {
+    'include': '#hex_number'
+  }
+  {
+    'include': '#binary_number'
+  }
+  {
+    'include': '#decimal_number'
+  }
+  {
+    'include': '#octal_number'
+  }
+  {
+    'match': '\\b(?i:BLT|BGE|DEA|INA|LSL)\\b'
+    'name': 'keyword.mnemonic.6502.alt'
+  }
+  {
+    'match': '^[A-Za-z][A-Za-z0-9@]*\\b'
+    'name': 'entity.name.label'
+  }
+  {
+    'match': '^[*;].*'
+    'name': 'comment.line'
+  }
+  {
+    'match': ';.*'
+    'name': 'comment.line'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive.string'
+      '2':
+        'name': 'string.delimited.begin'
+      '3':
+        'name': 'string.delimited'
+      '4':
+        'name': 'string.delimited.end'
+    'comment': 'delimited strings.'
+    'match': '\\b((?i)ASC|STR|DCI)\\s+(\\S)(.*?)(\\2|$)'
+    'name': 'meta.string.delimited'
+  }
+  {
+    'match': '\\b(?i:ASC|CHN|CHR|DATE|DCI|DDB|DEF|DFB|DS|DSECT|DW|ENTRY|EQU|EXTRN|FAIL|FIN|IBUFSIZ|IDNUM|INCLUDE|INTERP|LST|MACLIB|MSB|OBJ|ORG|PAGE|REF|REL|REP|SBTL|SBUFSIZ|SKP|STR|SYS|TIME|ZDEF|ZREF)\\b'
+    'name': 'keyword.directive'
+  }
+  {
+    'match': '\\b(?i:DO|ELSE|FIN|IFEQ|IFGE|IFGT|IFNE|IFLE|IFLT)\\b'
+    'name': 'keyword.control.conditional'
+  }
+  {
+    'match': '[-+/|^!<>*#()]'
+    'name': 'keyword.operator'
+  }
+]
+'repository':
+  'M6502':
+    'match': '\\b(?i:ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b'
+    'name': 'keyword.mnemonic.6502'
+  'M65816':
+    'match': '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
+    'name': 'keyword.mnemonic.65816'
+  'M65816L':
+    'match': '\\b(?i:ADCL|ANDL|CMPL|EORL|LDAL|ORAL|SBCL|STAL)\\b'
+    'name': 'keyword.mnemonic.65816.long'
+  'M65C02':
+    'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
+    'name': 'keyword.mnemonic.65c02'
+  'binary_number':
+    'match': '%[01]+'
+    'name': 'constant.numeric.binary'
+  'decimal_number':
+    'match': '\\b([0-9]+)\\b'
+    'name': 'constant.numeric.decimal'
+  'hex_number':
+    'match': '\\$[A-Fa-f0-9]+'
+    'name': 'constant.numeric.hex'
+  'octal_number':
+    'match': '@([0-7]+)\\b'
+    'name': 'constant.numeric.octal'
+'scopeName': 'source.assembly.6502.edasm'

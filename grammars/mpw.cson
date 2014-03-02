@@ -1,0 +1,242 @@
+'fileTypes': [
+  'aii'
+]
+'name': 'MPW IIgs Assembler'
+'patterns': [
+  {
+    'include': '#M6502'
+  }
+  {
+    'include': '#M65C02'
+  }
+  {
+    'include': '#M65816'
+  }
+  {
+    'include': '#hex_number'
+  }
+  {
+    'include': '#binary_number'
+  }
+  {
+    'include': '#decimal_number'
+  }
+  {
+    'match': '\\b(?i:BLT|BGE|CPA|DEA|INA|SWA|TAS|TSA)\\b'
+    'name': 'keyword.mnemonic.65816.alt'
+  }
+  {
+    'comment': 'Rockwell/m740'
+    'match': '\\b(?:BBC|BBR|BBS|CLB|RMB|SEB|SMB)[0-9]\\b'
+    'name': 'keyword.mnemonic.other'
+  }
+  {
+    'comment': 'Rockwell/m740'
+    'match': '\\b(?i:CLT|COM|LDM|RRF|SETT|TST)\\b'
+    'name': 'keyword.mnemonic.other'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'entity.name.function'
+      '2':
+        'name': 'keyword.directive'
+    'match': '^([A-Za-z@_~][A-Za-z0-9@_~%$#]*)\\s+((?i)PROC|PROCNAME|FUNC|INIT|STACKDP)\\b'
+    'name': 'meta.function'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'entity.name.function'
+    'match': '\\b((?i)ENTRY)\\s+([A-Za-z@_~][A-Za-z0-9@_~%$#]*)\\b'
+    'name': 'meta.entry'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'entity.name.record'
+      '2':
+        'name': 'keyword.directive'
+    'match': '^([A-Za-z@_~][A-Za-z0-9@_~%$#]*)\\s+((?i)RECORD)\\b'
+    'name': 'meta.record'
+  }
+  {
+    'match': '^[A-Za-z@_~][A-Za-z0-9@_~%$#]*\\b'
+    'name': 'entity.name.label'
+  }
+  {
+    'match': '(?<=,)([xXyYsS])\\b'
+    'name': 'variable.language.register'
+  }
+  {
+    'match': '\\b(?i:NOT|DIV|MOD|AND|OR|XOR|EOR)\\b'
+    'name': 'keyword.operator'
+  }
+  {
+    'begin': '"'
+    'end': '"'
+    'name': 'string.quoted.double'
+  }
+  {
+    'begin': '\''
+    'end': '\''
+    'name': 'string.quoted.single'
+  }
+  {
+    'match': '^[*;].*'
+    'name': 'comment.line'
+  }
+  {
+    'match': ';.*'
+    'name': 'comment.line'
+  }
+  {
+    'match': '[=<>+-/|*#()^]|(<>|<=|>=)'
+    'name': 'keyword.operator'
+  }
+  {
+    'match': '\\b(?i:NOT|DIV|MOD|AND|OR|XOR|EOR)\\b'
+    'name': 'keyword.operator'
+  }
+  {
+    'begin': '\\b((?i)MACRO)\\b'
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'keyword.directive'
+    'comment': 'enable &# macro parameters w/in a MAC ... ^^^ definition.'
+    'end': '\\b((?i)ENDMACRO|ENDM|MEND)\\b'
+    'name': 'meta.macro'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+      {
+        'match': '&[A-Za-z][A-Za-z0-9]*'
+        'name': 'variable.parameter'
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'constant.language'
+    'comment': 'eg: LONGA ON'
+    'match': '\\b((?i)CODECHK|DATACHK|LONGA|LONGI|MSB)\\s+((?i)ON|OFF)\\b'
+    'name': 'meta.onoff.directive'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'constant.language'
+    'match': '\\b((?i)STRING)\\s+((?i)ASIS|PASCAL|C|GS/OS)\\b'
+    'name': 'meta.string.directive'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'constant.language'
+    'match': '\\b((?i)BLANKS)\\s+((?i)ON|OFF|YES|NO|Y|N)\\b'
+    'name': 'meta.blanks.directive'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'constant.language'
+    'match': '\\b((?i)BLANKS)\\s+((?i)ON|OFF|YES|NO|Y|N|OBJECT|OBJ)\\b'
+    'name': 'meta.case.directive'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive'
+      '2':
+        'name': 'constant.language'
+    'match': '\\b((?i)MACHINE)\\s+((?i)M65816|M6502|M65C02|M65CX02|M740)\\b'
+    'name': 'meta.machine.directive'
+  }
+  {
+    'begin': '\\b((?i)PRINT)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.directive'
+    'end': '$'
+    'name': 'meta.print.directive'
+    'patterns': [
+      {
+        'match': ';.*'
+        'name': 'comment.line'
+      }
+      {
+        'match': '\\b(?i:ON|OFF|PUSH|POP)\\b'
+        'name': 'constant.language'
+      }
+      {
+        'match': '\\b(?i:NO)?(?i:GEN|PAGE|WARN|MCALL|OBJ|DATA|MDIR|HDR|LITS|STAT|SYM)\\b'
+        'name': 'constant.language'
+      }
+      {
+        'match': '[^,\\t ]'
+        'name': 'invalid.illegal.operand'
+      }
+    ]
+  }
+  {
+    'match': '\\b(?i:ALIGN|BLANKS|CASE|CODE|CODECHK|DATACHK|DIRECT|DUMP|EJECT|END|ENDF|ENDFUNC|ENDI|ENDP|ENDPROC|END_PROC|ENDR|ENDSTACK|ENDS|ENDWITH|ENTRY|EQU|EXPORT|FUNC|IMPORT|INCLUDE|INIT|LOAD|LONGA|LONGI|MACHINE|MSB|ORG|PAGESIZE|PRINT|PROC|RECORD|SEG|SEGATTR|SET|SPACE|STACKDP|STRING|TITLE|WITH)\\b'
+    'name': 'keyword.directive'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.directive.data'
+      '3':
+        'name': 'storage.type'
+    'match': '\\b((?i)DC|DCB|DS)([.](.))?\\b'
+    'name': 'meta.dc.directive'
+  }
+  {
+    'match': '\\b(?i:ACTR|AERROR|ANOP|CYCLE|ELSE|ELSEIF|ENDIF|ENDM|ENDMACRO|ENDWHILE|EXITM|GOTO|IF|LEAVE|MACRO|MEND|MEXIT|THEN|WHILE|WRITE|WRITELN|SET|SETA|SETC)\\b'
+    'name': 'support.function.macro'
+  }
+  {
+    'match': '&(?i:ABS|CHR|CONCAT|DEFAULT|DELSYMTBL|ENTERSYM|EVAL|FINDSYM|GETENV|INTTOSTR|I2S|ISINT|LEN|LEX|LIST|LOWCASE|LC|MAX|MIN|NBR|NEWSYMTBL|ORD|POS|SCANEQ|SCANNE|STRTOINT|S2I|SETTING|SUBSTR|SYSDATE|SYSINDEX|SYSLIST|SYSLST|SYSLOCAL|SYSGLOBAL|SYSMOD|SYSSEG|SYSTIME|SYSTOKEN|SYSTOKSTR|SYSVALUE|SYSFLAGS|TRIM|TYPE|UPCASE|UC)\\b'
+    'name': 'support.function.macro'
+  }
+]
+'repository':
+  'M6502':
+    'match': '\\b(?i:ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b'
+    'name': 'keyword.mnemonic.6502'
+  'M65816':
+    'match': '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
+    'name': 'keyword.mnemonic.65816'
+  'M65816L':
+    'match': '\\b(?i:ADCL|ANDL|CMPL|EORL|LDAL|ORAL|SBCL|STAL)\\b'
+    'name': 'keyword.mnemonic.65816.long'
+  'M65C02':
+    'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
+    'name': 'keyword.mnemonic.65c02'
+  'binary_number':
+    'match': '%[01]+'
+    'name': 'constant.numeric.binary'
+  'decimal_number':
+    'match': '\\b([0-9]+)\\b'
+    'name': 'constant.numeric.decimal'
+  'hex_number':
+    'match': '\\$[A-Fa-f0-9]+'
+    'name': 'constant.numeric.hex'
+  'octal_number':
+    'match': '@([0-7]+)\\b'
+    'name': 'constant.numeric.octal'
+'scopeName': 'source.assembly.65816.mpw'
