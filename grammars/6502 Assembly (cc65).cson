@@ -1,6 +1,6 @@
-'fileTypes': []
-'foldingStartMarker': '/\\*\\*|\\{\\s*$'
-'foldingStopMarker': '\\*\\*/|^\\s*\\}'
+'fileTypes': [
+  's'
+]
 'name': '6502 Assembly (cc65)'
 'patterns': [
   {
@@ -19,11 +19,7 @@
     'include': '#M65816_alias'
   }
   {
-    'begin': '(;)'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.comment'
-    'end': '\\n'
+    'match': ';.*$'
     'name': 'comment.line.semicolon'
   }
   {
@@ -36,6 +32,10 @@
       '0':
         'name': 'punctuation.definition.string.end'
     'name': 'string.quoted.double.assembly'
+  }
+  {
+    'match': '\\#(\'.\'|[^\\s\']+)'
+    'name': 'constant.numeric.hex'
   }
   {
     'match': '\\$[A-Fa-f0-9]+'
@@ -54,7 +54,7 @@
     'name': 'constant.numeric.decimal'
   }
   {
-    'match': '^[A-Za-z_][A-Za-z0-9_]:*'
+    'match': '^[A-Za-z_][A-Za-z0-9_]*:'
     'name': 'variable.other.readwrite.assembly' # 'entity.name.label'
   }
   {
