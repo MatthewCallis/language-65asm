@@ -22,4 +22,6 @@ pull request to add snippets, make grammar tweaks, etc.
 
 # Contributors
 
+- [Matthew Callis](https://github.com/MatthewCallis)
 - [Matt Tuttle](https://github.com/MattTuttle)
+- [Tommy Savaria](https://github.com/NewLunarFire)
