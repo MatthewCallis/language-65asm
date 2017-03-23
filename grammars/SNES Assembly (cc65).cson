@@ -1,7 +1,4 @@
-'fileTypes': [
-  'asm',
-  'inc'
-]
+'fileTypes': []
 'name': 'SNES Assembly (cc65)'
 'patterns': [
   {
@@ -82,7 +79,7 @@
     'name': 'keyword.operator.assembly.cc65' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc5.5
   }
   {
-    'match': '(\\.)\\b(?i:and|bankbyte|bitand|bitnot|bitor|bitxor|hibyte|lobyte|mod|not|or|shl|shr|xor)\\b'
+    'match': '(\\.)\\b(?i:and|bankbyte|bitand|bitnot|bitor|bitxor|mod|not|or|shl|shr|xor)\\b'
     'name': 'keyword.operator.assembly.cc65' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc5.5
   }
 ]
@@ -100,7 +97,7 @@
     'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
     'name': 'keyword.mnemonic.65c02'
   'MSuperFX':
-    'match': '\\b(?i:ADD|ADC|ALT1|ALT2|ALT3|AND|ASR|BCC|BCS|BEQ|BGE|BIC|BLT|BMI|BNE|BPL|BRA|BVC|BVS|CACHE|CMODE|CMP|COLOR|DEC|DIV2|FMULT|FROM|GETB|GETBH|GETBL|GETBS|GETC|HIB|IBT|INC|IWT|JAL|JMP|LDB|LDW|LEA|LINK|LJMP|LM|LMS|LMULT|LOB|LOOP|LSR|MERGE|MOVE|MOVEB|MOVES|MOVEW|MULT|NOP|NOT|OR|PLOT|POP|POPB|PUSH|PUSHB|RAMB|RET|ROL|ROMB|ROR|RPIX|SBC|SBK|SEX|SM|SMS|STB|STOP|STW|SUB|SWAP|TO|UMULT|WITH|XOR)\\b'
+    'match': '\\b(?i:ADD|ADC|ALT1|ALT2|ALT3|AND|ASR|BCC|BCS|BEQ|BGE|BIC|BLT|BMI|BNE|BPL|BRA|BVC|BVS|CACHE|CMODE|CMP|COLOR|DEC|DIV2|FMULT|FROM|GETB|GETBH|GETBL|GETBS|GETC|HIB|IBT|INC|IWT|JAL|JMP|LDB|LDW|LEA|LINK|LJMP|LM|LMS|LMULT|LOB|LOOP|LSR|MERGE|MOVE|MOVEB|MOVES|MOVEW|MULT|NOP|NOT|OR|PLOT|POP|PUSH|RAMB|RET|ROL|ROMB|ROR|RPIX|SBC|SBK|SEX|SM|SMS|STB|STOP|STW|SUB|SWAP|TO|UMULT|WITH|XOR)\\b'
     'name': 'keyword.mnemonic.superfx'
   'MSPC700':
     'match': '\\b(?i:ADC|ADDW|AND|AND1|ASL|BBC|BBS|BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|BRA|BRK|CALL|CBNE|CLR1|CLRC|CLRP|CLRV|CMP|CMPW|DAA|DAS|DBNZ|DEC|DECW|DI|DIV|EI|EOR|EOR1|INC|INCW|JMP|LSR|MOV|MOV1|MOVW|MUL|NOP|NOT1|NOTC|OR|OR1|PCALL|POP|PUSH|RET|RETI|ROL|ROR|SBC|SET1|SETC|SETP|SLEEP|STOP|SUBW|TCALL|TCLR1|TSET1|XCN)\\b'
