@@ -49,3 +49,4 @@ See last line in grammar files for names.
 - [Matthew Callis](https://github.com/MatthewCallis)
 - [Matt Tuttle](https://github.com/MattTuttle)
 - [Tommy Savaria](https://github.com/NewLunarFire)
+- [ARM9](https://github.com/ARM9)
