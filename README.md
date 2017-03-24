@@ -20,6 +20,30 @@ from the various other TextMate bundles:
 Contributions are greatly appreciated! Please fork this repository and open a
 pull request to add snippets, make grammar tweaks, etc.
 
+# Installation
+
+In atom, press `ctrl+shift+p` and enter `install package`, then type `language-65asm` into the search bar and hit install.
+
+#### OR
+
+Run `apm install language-65asm` in a terminal.
+
+To add automatic syntax highlighting to a set of file extensions, add this to your
+config.cson (`ctrl+shift+p` -> config):
+
+```
+"*":
+  core: 
+    customFileTypes: {
+      "source.assembly.6502.cc65": [
+        "asm"
+        "inc"
+      ]
+    }
+```
+
+See last line in grammar files for names.
+
 # Contributors
 
 - [Matthew Callis](https://github.com/MatthewCallis)

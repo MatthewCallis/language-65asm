@@ -1,0 +1,105 @@
+'fileTypes': []
+'name': 'SNES Assembly (cc65)'
+'patterns': [
+  {
+    'include': '#M6502'
+  }
+  {
+    'include': '#M65C02'
+  }
+  {
+    'include': '#M65816'
+  }
+  {
+    'include': '#M65816_alias'
+  }
+  {
+    'include': '#MSuperFX'
+  }
+  {
+    'include': '#MSPC700'
+  }
+  {
+    'match': ';.*$'
+    'name': 'comment.line.semicolon'
+  }
+  {
+    'match': '\\b(?i:R0|R1|R2|R3|R4|R5|R6|R7|R8|R9|R10|R11|R12|R13|R14|R15|SP|LR|PC)\\b'
+    'name': 'support.function.pseudo'
+  }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.string.begin'
+    'end': '"'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.string.end'
+    'name': 'string.quoted.double.assembly'
+  }
+  {
+    'match': '\\$[A-Fa-f0-9]+'
+    'name': 'constant.numeric.hex'
+  }
+  {
+    'match': '\\b[0-9][0-9a-fA-f]*h\\b'
+    'name': 'constant.numeric.hex'
+  }
+  {
+    'match': '%[01]+'
+    'name': 'constant.numeric.binary'
+  }
+  {
+    'match': '\\b[0-9]+\\b'
+    'name': 'constant.numeric.decimal'
+  }
+  {
+    'match': '\\b[A-Za-z_][A-Za-z0-9_]*\\b'
+    'name': 'variable.other.readwrite.assembly' # 'entity.name.label'
+  }
+  {
+    'match': '@[A-Za-z_][A-Za-z0-9_]*\\b'
+    'name': 'variable.other.readwrite.instance.assembly' # 'entity.name.label.local'
+  }
+  {
+    'match': '(\\.)?\\b(?i:bank|bankbyte|blank|concat|const|hibyte|hiword|ident|left|lobyte|loword|match|max|mid|min|ref|referenced|right|sizeof|sprintf|strat|string|strlen|tcount|xmatch)\\b'
+    'name': 'support.function.pseudo' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc10
+  }
+  {
+    'match': '(\\.)?\\b(?i:a16|a8|addr|align|asciiz|assert|autoimport|bankbytes|bss|byt|byte|case|charmap|code|condes|constructor|data|dbyt|debuginfo|def|define|defined|delmac|delmacro|destructor|dword|else|elseif|end|endenum|endif|endmac|endmacro|endproc|endrep|endrepeat|endscope|endstruct|endunion|enum|error|exitmac|exitmacro|export|exportzp|faraddr|fatal|feature|fileopt|fopt|forceimport|global|globalzp|hibytes|i16|i8|if|ifblank|ifconst|ifdef|ifnblank|ifndef|ifnref|ifp02|ifp816|ifpc02|ifpsc02|ifref|import|importzp|incbin|include|interruptor|linecont|list|listbytes|lobytes|local|localchar|mac|macpack|macro|org|out|p02|p816|pagelen|pagelength|pc02|popcpu|popseg|proc|psc02|pushcpu|pushseg|reloc|repeat|res|rodata|scope|segment|set|setcpu|smart|struct|tag|undef|undefine|union|warning|word|zeropage)\\b'
+    'name': 'storage.modifier' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc11
+  }
+  {
+    'match': '\\b(CPU_6502|CPU_65SC02|CPU_65C02|CPU_65816|CPU_SWEET16|CPU_HUC6280|CPU_ISET_6502|CPU_ISET_65SC02|CPU_ISET_65C02|CPU_ISET_65816|CPU_ISET_SWEET16|CPU_ISET_HUC6280|__APPLE2__|__APPLE2ENH__|__ATARI__|__ATARIXL__|__ATMOS__|__BBC__|__C128__|__C16__|__C64__|__CBM__|__CBM510__|__CBM610__|__GEOS__|__GEOS_APPLE__|__GEOS_CBM__|__LUNIX__|__LYNX__|__NES__|__PET__|__PLUS4__|__SIM6502__|__SIM65C02__|__SUPERVISION__|__VIC20__)\\b'
+    'name': 'constant.language.assembly.cc65'
+  }
+  {
+    'match': '!|&|&&|\\^|\\*|\\/|\\-|\\+|~|=|<=|>=|<<|>>|<>|<|>|\\||\\|\\|'
+    'name': 'keyword.operator.assembly.cc65' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc5.5
+  }
+  {
+    'match': '(\\.)\\b(?i:and|bankbyte|bitand|bitnot|bitor|bitxor|mod|not|or|shl|shr|xor)\\b'
+    'name': 'keyword.operator.assembly.cc65' # http://oliverschmidt.github.io/cc65/doc/ca65.html#toc5.5
+  }
+]
+'repository':
+  'M6502':
+    'match': '\\b(?i:ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b'
+    'name': 'keyword.mnemonic.6502'
+  'M65816':
+    'match': '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
+    'name': 'keyword.mnemonic.65816'
+  'M65816_alias':
+    'match': '\\b(?i:BGE|BLT|CPA|DEA|INA|SWA|TAD|TAS|TDA|TSA)\\b'
+    'name': 'keyword.mnemonic.65816_alias'
+  'M65C02':
+    'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
+    'name': 'keyword.mnemonic.65c02'
+  'MSuperFX':
+    'match': '\\b(?i:ADD|ADC|ALT1|ALT2|ALT3|AND|ASR|BCC|BCS|BEQ|BGE|BIC|BLT|BMI|BNE|BPL|BRA|BVC|BVS|CACHE|CMODE|CMP|COLOR|DEC|DIV2|FMULT|FROM|GETB|GETBH|GETBL|GETBS|GETC|HIB|IBT|INC|IWT|JAL|JMP|LDB|LDW|LEA|LINK|LJMP|LM|LMS|LMULT|LOB|LOOP|LSR|MERGE|MOVE|MOVEB|MOVES|MOVEW|MULT|NOP|NOT|OR|PLOT|POP|PUSH|RAMB|RET|ROL|ROMB|ROR|RPIX|SBC|SBK|SEX|SM|SMS|STB|STOP|STW|SUB|SWAP|TO|UMULT|WITH|XOR)\\b'
+    'name': 'keyword.mnemonic.superfx'
+  'MSPC700':
+    'match': '\\b(?i:ADC|ADDW|AND|AND1|ASL|BBC|BBS|BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|BRA|BRK|CALL|CBNE|CLR1|CLRC|CLRP|CLRV|CMP|CMPW|DAA|DAS|DBNZ|DEC|DECW|DI|DIV|EI|EOR|EOR1|INC|INCW|JMP|LSR|MOV|MOV1|MOVW|MUL|NOP|NOT1|NOTC|OR|OR1|PCALL|POP|PUSH|RET|RETI|ROL|ROR|SBC|SET1|SETC|SETP|SLEEP|STOP|SUBW|TCALL|TCLR1|TSET1|XCN)\\b'
+    'name': 'keyword.mnemonic.spc700'
+'scopeName': 'source.assembly.snes.cc65'
