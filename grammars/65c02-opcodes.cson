@@ -1,6 +1,7 @@
 # Extends the basic 6502 instruction set with the 65c02 op codes
+# NOTE: rmb, bbr, smb, bbs not supported yet
 
-scopeName: 'source.65816-opcodes'
+scopeName: 'source.65c02-opcodes'
 
 patterns: [
   # The basic 6502 instruction set
