@@ -1,0 +1,135 @@
+# Syntax Highlighting for the cc65 toolchain
+
+scopeName: 'source.cc65-toolchain'
+name: '6502 Assembly (cc65) --TEST--'      # Name shown in Atom Editor grammar selection
+# File extensions associated with this package
+fileTypes: [
+  's'
+]
+patterns: [
+  # The 65c02 instruction set
+  {
+    include: 'source.6502-opcodes'
+  }
+  # The cc65 toolchain considers everything after a semicolon(;) as comment
+  {
+    include: '#comments'
+  }
+  # symbols, constants, numbers
+  {
+    include: '#symbols'
+  }
+  # directives
+  {
+    include: '#directives'
+  }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
+      {
+        match:  ';.*$'
+        name:   'comment.line.semicolon.cc65-toolchain'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.cc65-toolchain'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.cc65-toolchain'
+        name: 'string.quoted.double.assembly.cc65-toolchain'
+      }
+      # absolut addressing/numbering
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.cc65-toolchain'
+      }
+      # hex, prefixed with ampersand($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.cc65-toolchain'
+      }
+      # hex, suffixed with h(h)
+      {
+        match: '-?([0-9]+)h'
+        name: 'constant.numeric.hex.cc65-toolchain'
+      }
+      # binary
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.cc65-toolchain'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.cc65-toolchain'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # ca65 pseudo variables
+      {
+        match:  '(\\.)?\\b(?i:\\*|asize|cpu|isize|paramcount|time|version)\\b'
+        name:   'support.function.pseudo.cc65-toolchain'
+      }
+      # ca65 pseudo functions
+      {
+        match:  '(\\.)?\\b(?i:addrsize|bank(byte)?|blank|con(cat|st)|(hi|lo)(byte|word)|ident|left|x?match|max|mi[dn]|ref(erenced)?|right|sizeof|strat|sprintf|str(ing|len)|tcount)\\b'
+        name:   'support.function.pseudo.cc65-toolchain'
+      }
+      # ca65 control commands, A through C
+      {
+        match:  '(\\.)?\\b(?i:a(8|16)|addr|align|asciiz|assert|autoimport|(bank|hi)bytes|bss|byte?|case|charmap|code|condes|(con|de)structor)\\b'
+        name:   'storage.modifier.cc65-toolchain'
+      }
+      # ca65 control commands, D and E
+      {
+        match:  '(\\.)?\\b(?i:data|dbyt|debuginfo|define|delmac(ro)?|def(ined(macro)?)?|dword|else(if)?|end(enum)?|end(enum|if|proc|rep(eat)?|scope|struct|union)?|endmac(ro)?|enum|error|exitmac(ro)?|export(zp)?)\\b'
+        name:   'storage.modifier.cc65-toolchain'
+      }
+      # ca65 control commands, F through I
+      {
+        match:  '(\\.)?\\b(?i:faraddr|fatal|feature|f(ile)?opt|forceimport|global(zp)?|i(8|16)|if((n)?blank|const|(n)?def|(n)?ref|p02|p4510|p816|p(s)?c02)?|import(zp)?|inc(bin|lude)|interruptor|ismnem(onic)?)\\b'
+        name:   'storage.modifier.cc65-toolchain'
+      }
+      # ca65 control commands, L through R
+      {
+        match:  '(\\.)?\\b(?i:linecont|list(bytes)?|lobytes|local(char)?|macpack|mac(ro)?|org|out|p02|p4510|p816|pagelen(gth)?|pc02|pop(cpu|seg)|proc|psc02|push(cpu|seg)|reloc|repeat|res|rodata)\\b'
+        name:   'storage.modifier.cc65-toolchain'
+      }
+      # ca65 control commands, S through Z
+      {
+        match:  '(\\.)?\\b(?i:scope|segment|set(cpu)?|smart|struct|tag|undef(ine)?|union|warning|word|zeropage)\\b'
+        name:   'storage.modifier.cc65-toolchain'
+      }
+      # CPU constants
+      {
+        match:  '\\b(CPU_6502|CPU_65SC02|CPU_65C02|CPU_65816|CPU_SWEET16|CPU_HUC6280|CPU_ISET_6502|CPU_ISET_65SC02|CPU_ISET_65C02|CPU_ISET_65816|CPU_ISET_SWEET16|CPU_ISET_HUC6280|__APPLE2__|__APPLE2ENH__|__ATARI__|__ATARIXL__|__ATMOS__|__BBC__|__C128__|__C16__|__C64__|__CBM__|__CBM510__|__CBM610__|__GEOS__|__GEOS_APPLE__|__GEOS_CBM__|__LUNIX__|__LYNX__|__NES__|__PET__|__PLUS4__|__SIM6502__|__SIM65C02__|__SUPERVISION__|__VIC20__)\\b'
+        name:   'constant.other.cc65-toolchain'
+      }
+      # Operators
+      {
+        match:  '!|&|&&|\\^|\\*|\\/|\\-|\\+|~|=|<=|>=|<<|>>|<>|<|>|\\||\\|\\|'
+        name:   'keyword.operator.cc65-toolchain'
+      }
+      # Operators II
+      {
+        match:  '(\\.)\\b(?i:and|(bit)?(and|not|or|xor)|mod|shl|shr)\\b'
+        name:   'keyword.operator.cc65-toolchain'
+      }
+    ]

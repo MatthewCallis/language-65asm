@@ -33,7 +33,7 @@ config.cson (`ctrl+shift+p` -> config):
 
 ```
 "*":
-  core: 
+  core:
     customFileTypes: {
       "source.assembly.6502.cc65": [
         "asm"
@@ -42,7 +42,7 @@ config.cson (`ctrl+shift+p` -> config):
     }
 ```
 
-See last line in grammar files for names.
+See first line in grammar files for names.
 
 # Contributors
 
