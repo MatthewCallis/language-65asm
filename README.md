@@ -42,7 +42,7 @@ config.cson (`ctrl+shift+p` -> config):
     }
 ```
 
-See first line in grammar files for names.
+See last line in grammar files for names.
 
 # Contributors
 
