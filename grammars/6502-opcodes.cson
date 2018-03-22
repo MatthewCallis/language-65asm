@@ -23,13 +23,3 @@ repository:
         name:   'keyword.mnemonic.6502.6502-opcodes'
       }
     ]
-#   'M65816':
-#     'match': '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
-#     'name': 'keyword.mnemonic.65816'
-#   'M65816_alias':
-#     'match': '\\b(?i:BGE|BLT|CPA|DEA|INA|SWA|TAD|TAS|TDA|TSA)\\b'
-#     'name': 'keyword.mnemonic.65816_alias'
-#   'M65C02':
-#     'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
-#     'name': 'keyword.mnemonic.65c02'
-# 'scopeName': 'source.assembly.6502'

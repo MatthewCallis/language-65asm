@@ -3,15 +3,7 @@
 scopeName: 'source.cc65-directives'
 
 patterns: [
-  # # The 65c02 instruction set
-  # {
-  #   include: 'source.65c02-opcodes'
-  # }
-  # # Include the 6502ex op codes
-  # {
-  #   include: 'source.6502x-opcodes'
-  # }
-  # The cc65 toolchain considers everything after a semicolon(;) as comment
+  # comments
   {
     include: '#comments'
   }
@@ -52,7 +44,7 @@ repository:
             name: 'punctuation.definition.string.end.cc65-directives'
         name: 'string.quoted.double.assembly.cc65-directives'
       }
-      # absolut addressing/numbering
+      # absolut address/number
       {
         match: '\\#(\'.\'|[^\\s\']+)'
         name: 'constant.numeric.hex.cc65-directives'
