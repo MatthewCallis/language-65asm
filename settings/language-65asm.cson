@@ -1,18 +1,18 @@
-# '.source.assembly':
-#   'editor':
-#     'commentStart': ';'
-# '.source.assembly.6502.edasm':
-#   'editor':
-#     'foldEndPattern': '\\b(?i:DEND|FIN)\\b'
-# '.source.assembly.65816.mpw':
-#   'editor':
-#     'foldEndPattern': '\\b(?i:ENDF|ENDFUNC|ENDI|ENDP|ENDPROC|ENDR|ENDSTACK|ENDWITH|ENDM|ENDMACRO|MEND)\\b'
-# '.source.assembly.65816.merlin':
-#   'editor':
-#     'foldEndPattern': '\\b(?i:DEND|FIN)\\b|<<<|--\\^'
-# '.source.assembly.65816.ninjaforce':
-#   'editor':
-#     'foldEndPattern': '(\\^\\^\\^|\\<\\<\\<)'
-# '.source.assembly.65816.orcam':
-#   'editor':
-#     'foldEndPattern': '\\b(?i:END)\\b'
+'.source.assembly':
+  'editor':
+    'commentStart': ';'
+'.source.assembly.6502.edasm':
+  'editor':
+    'foldEndPattern': '\\b(?i:DEND|FIN)\\b'
+'.source.assembly.65816.mpw':
+  'editor':
+    'foldEndPattern': '\\b(?i:ENDF|ENDFUNC|ENDI|ENDP|ENDPROC|ENDR|ENDSTACK|ENDWITH|ENDM|ENDMACRO|MEND)\\b'
+'.source.assembly.65816.merlin':
+  'editor':
+    'foldEndPattern': '\\b(?i:DEND|FIN)\\b|<<<|--\\^'
+'.source.assembly.65816.ninjaforce':
+  'editor':
+    'foldEndPattern': '(\\^\\^\\^|\\<\\<\\<)'
+'.source.assembly.65816.orcam':
+  'editor':
+    'foldEndPattern': '\\b(?i:END)\\b'

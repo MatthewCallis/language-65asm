@@ -3,15 +3,6 @@
 scopeName: 'source.cc65-directives'
 
 patterns: [
-  # # The 65c02 instruction set
-  # {
-  #   include: 'source.65c02-opcodes'
-  # }
-  # # Include the 6502ex op codes
-  # {
-  #   include: 'source.6502x-opcodes'
-  # }
-  # The cc65 toolchain considers everything after a semicolon(;) as comment
   {
     include: '#comments'
   }
