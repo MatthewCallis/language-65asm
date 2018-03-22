@@ -13,12 +13,12 @@ patterns: [
 # Respository starts here -----------------------------------------------------
 repository:
 
-  # 6502 pseudo op codes
+  # 6502x pseudo opcodes
   'mnemonics-6502x':
     patterns: [
       # mnemonics
       {
         match:  '\\b(?i:ALR|ANC|ARR|AXS|DCP|ISC|LAS|LAX|RLA|RRA|SAX|SLO|SRE)\\b'
-        name:   'keyword.mnemonic.6502.6502x-opcodes'
+        name:   'keyword.mnemonic.6502x.6502x-opcodes'
       }
     ]

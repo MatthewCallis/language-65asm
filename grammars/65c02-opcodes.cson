@@ -1,5 +1,5 @@
-# Extends the basic 6502 instruction set with the 65c02 op codes
-# NOTE: rmb, bbr, smb, bbs not supported yet
+# Extends the basic 6502 instruction set with the 65c02 opcodes
+# NOTE: rmb, bbr, smb, bbs not supported
 
 scopeName: 'source.65c02-opcodes'
 
@@ -8,7 +8,7 @@ patterns: [
   {
     include: 'source.6502-opcodes'
   }
-  # The added 65c02 op codes
+  # The added 65c02 opcodes
   {
     include: '#mnemonics-65c02'
   }
@@ -17,7 +17,7 @@ patterns: [
 # Respository starts here -----------------------------------------------------
 repository:
 
-  # basic 6502 instruction set
+  # 65c02 instruction set extension
   'mnemonics-65c02':
     patterns: [
       # mnemonics
