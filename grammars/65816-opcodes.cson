@@ -1,0 +1,27 @@
+# Extends the basic 6502 instruction set with the basic 65816 instruction set
+
+scopeName: 'source.65816-opcodes'
+
+patterns: [
+  # The 65c02 instruction set
+  {
+    include: 'source.65c02-opcodes'
+  }
+  # The 65816 instruction set
+  {
+    include: '#mnemonics-65816'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # 65816 instruction set
+  'mnemonics-65816':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
+        name:   'keyword.mnemonic.65816.65816-opcodes'
+      }
+    ]

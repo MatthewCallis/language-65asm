@@ -1,0 +1,33 @@
+# Extends the basic 6502 instruction set with the 65c02 opcodes
+# NOTE: rmb, bbr, smb, bbs not supported
+
+scopeName: 'source.65c02-opcodes'
+
+patterns: [
+  # The basic 6502 instruction set
+  {
+    include: 'source.6502-opcodes'
+  }
+  # The added 65c02 opcodes
+  {
+    include: '#mnemonics-65c02'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # 65c02 instruction set extension
+  'mnemonics-65c02':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
+        name:   'keyword.mnemonic.65c02.65c02-opcodes'
+      }
+      # additional opcodes for WDC chips
+      {
+        match:  '\\b(?i:(BBR|BBS|RMB|SMB)[0-7])\\b'
+        name:   'keyword.mnemonic.65c02.65c02-opcodes'
+      }
+    ]

@@ -1,0 +1,24 @@
+# Adds the pseudo codes known as 6502X to the basic 6502 instruction set
+# NOTE: look for extra opcodes: jam
+
+scopeName: 'source.6502x-opcodes'
+
+patterns: [
+  # The 6502 pseudo opcodes known as 6502X
+  {
+    include: '#mnemonics-6502x'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # 6502x pseudo opcodes
+  'mnemonics-6502x':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:ALR|ANC|ARR|AXS|DCP|ISC|LAS|LAX|RLA|RRA|SAX|SLO|SRE)\\b'
+        name:   'keyword.mnemonic.6502x.6502x-opcodes'
+      }
+    ]

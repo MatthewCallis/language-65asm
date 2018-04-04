@@ -1,0 +1,23 @@
+# Aliases for certain opcodes used by many assemblers
+
+scopeName: 'source.65816-aliases'
+
+patterns: [
+  # The 65816 instruction set aliases
+  {
+    include: '#mnemonics-65816-aliases'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # 65816 instruction set aliases
+  'mnemonics-65816-aliases':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:BGE|BLT|CPA|DEA|INA|SWA|TAD|TAS|TDA|TSA)\\b'
+        name:   'keyword.mnemonic.65816.65816-aliases'
+      }
+    ]

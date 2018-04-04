@@ -1,0 +1,14 @@
+# Syntax Highlighting for the Western Design Center toolchain and 6502 support
+# TODO: extra addressing modes, chip point prefix, * comments
+
+scopeName: 'source.wdc-toolchain'
+name: '6502 Assembly (WDCTools)'      # Name shown in Atom Editor grammar selection
+# File extensions associated with this grammar
+fileTypes: [
+  's'
+]
+# include all opcodes and directives the toolchain supports
+patterns: [
+  { include:  'source.65c02-opcodes' }   # the 65c02 opcodes, includes the basic 6502 instruction set
+  { include:  'source.wdc-directives' }  # include the directives of the WDCxAS assemblers
+]

@@ -1,0 +1,25 @@
+# Syntax Highlighting for the basic instruction set of the 6502 microprocessor.
+# This file only contains rules for 6502 mnemonics. The rules here are used by
+# other grammars only that add rules for comments, symbols, etc.
+
+scopeName: 'source.6502-opcodes'
+
+patterns: [
+  # The basic 6502 instruction set
+  {
+    include: '#mnemonics-6502'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # basic 6502 instruction set
+  'mnemonics-6502':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b'
+        name:   'keyword.mnemonic.6502.6502-opcodes'
+      }
+    ]

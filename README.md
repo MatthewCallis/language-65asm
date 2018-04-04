@@ -33,7 +33,7 @@ config.cson (`ctrl+shift+p` -> config):
 
 ```
 "*":
-  core: 
+  core:
     customFileTypes: {
       "source.assembly.6502.cc65": [
         "asm"
