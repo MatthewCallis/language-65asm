@@ -2,14 +2,16 @@
 
 Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with extra support for various compilers:
 
- - [cc65](http://oliverschmidt.github.io/cc65/)
+ - [ACME Crossassembler](https://sourceforge.net/projects/acme-crossass/)
+ - [cc65 (SNES Syntax: 65816, SPC700, SuperFX)](http://oliverschmidt.github.io/cc65/)
  - [DASM](http://dasm-dillon.sourceforge.net/) (6502)
- - EDASM
+ - [EDASM](https://archive.org/details/EDASM-ProDOS_Assembler_Tools_Manual)
  - [Merlin](http://en.wikipedia.org/wiki/Merlin_(assembler))
  - [MPW IIgs Assembler](http://store.16sector.com/index.php?main_page=product_info&products_id=24)
  - [NinjaForce Assembler](http://www.ninjaforce.com/html/products_nf_assembler.html)
  - [ORCA/M](http://www.byteworks.us/Byte_Works/Products.html)
  - [WLA-DX](http://www.villehelin.com/wla.html)
+ - [WTCTools by Western Design Center](http://westerndesigncenter.com/wdc/tools.cfm)
 
 Originally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)
 from the various other TextMate bundles:
@@ -42,7 +44,7 @@ config.cson (`ctrl+shift+p` -> config):
     }
 ```
 
-See first line in grammar files for names.
+See last line in grammar files for names.
 
 # Contributors
 
@@ -50,3 +52,5 @@ See first line in grammar files for names.
 - [Matt Tuttle](https://github.com/MattTuttle)
 - [Tommy Savaria](https://github.com/NewLunarFire)
 - [ARM9](https://github.com/ARM9)
+- [georgjz](https://github.com/georgjz)
+- [GoDot](http://www.godot64.de/)

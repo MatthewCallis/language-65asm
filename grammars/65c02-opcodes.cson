@@ -25,4 +25,9 @@ repository:
         match:  '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
         name:   'keyword.mnemonic.65c02.65c02-opcodes'
       }
+      # additional opcodes for WDC chips
+      {
+        match:  '\\b(?i:(BBR|BBS|RMB|SMB)[0-7])\\b'
+        name:   'keyword.mnemonic.65c02.65c02-opcodes'
+      }
     ]

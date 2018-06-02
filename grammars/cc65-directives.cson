@@ -3,7 +3,6 @@
 scopeName: 'source.cc65-directives'
 
 patterns: [
-  # comments
   {
     include: '#comments'
   }

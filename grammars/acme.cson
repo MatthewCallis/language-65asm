@@ -1,0 +1,103 @@
+# Syntax Highlighting for the acme directives
+
+scopeName: 'source.assembly.6502.acme'
+name: 'ACME Crossassembler'
+filetypes: [
+  'a'
+  'asm'
+]
+
+patterns: [
+  { include:  'source.6502-opcodes' }
+  { include:  'source.6502x-opcodes' }
+  { include: '#comments' }
+  # symbols, constants, numbers
+  { include: '#symbols' }
+  # directives
+  { include: '#directives' }
+]
+
+# Repository starts here ------------------------------------------------------
+
+repository:
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
+      {
+        match:  ';.*$'
+        name:   'comment.line.semicolon.acme'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      # strings
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.acme'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.acme'
+        name: 'string.quoted.double.assembly.acme'
+      }
+      # absolut addressing/numbering
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.acme'
+      }
+      # hex, prefixed with dollar ($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.acme'
+      }
+      # binary prefixed with %
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.acme'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.acme'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # File and Symbol control
+      {
+        match:  '\\b\!(?i:source|src|eof|endoffile|pseudopc|zn|zone|set|to|bin(ary)?|sl|warn|error|serious)\\b'
+        name:   'support.function.pseudo.acme'
+      }
+      # Parsing control
+      {
+        match:  '\\b\!(?i:cpu|al|as|rl|rs|8|by|byte|16|wo|word|24|32|h|hex|fi|fill|align|skip|ct|convtab|tx|text|pet|scr|scrxor|raw)\\b'
+        name:   'support.function.pseudo.acme'
+      }
+      # Macro control
+      {
+        match:  '\\b(?i:\!macro|\+[a-zA-Z0-9)\\b'
+        name:   'support.function.pseudo.acme'
+      }
+      # Conditional control
+      {
+        match:  '\\b(?i:\!if|else|\!if(n)?def|\!for|\!do|while|until)\\b'
+        name:   'keyword.control.conditional.acme'
+      }
+      # Operators
+      {
+        match:  '!|\\+|\\-|\\/|\\*|<<|>>|&|\\||\\^|=|<|>|\\:|\\|\\|'
+        name:   'keyword.operator.acme'
+      }
+      # Operators II
+      {
+        match:  '\\b(?i:and|not|mod|sh[lr]|x?or|eq|u?[gl]t)\\b'
+        name:   'keyword.operator.acme'
+      }
+    ]

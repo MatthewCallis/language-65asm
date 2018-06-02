@@ -1,0 +1,122 @@
+# Syntax Highlighting for the Western Design Center toolchain directives
+
+scopeName: 'source.wdc-directives'
+
+patterns: [
+  {
+    include: '#comments'
+  }
+  # symbols, constants, numbers
+  {
+    include: '#symbols'
+  }
+  # directives
+  {
+    include: '#directives'
+  }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
+      {
+        match:  ';.*$'
+        name:   'comment.line.semicolon.wdc-toolchain'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      # strings
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.wdc-toolchain'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.wdc-toolchain'
+        name: 'string.quoted.double.assembly.wdc-toolchain'
+      }
+      # absolut addressing/numbering
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.wdc-toolchain'
+      }
+      # hex, prefixed with ampersand($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.wdc-toolchain'
+      }
+      # hex, suffixed with h(h)
+      {
+        match: '-?([0-9]+)h'
+        name: 'constant.numeric.hex.wdc-toolchain'
+      }
+      # binary prefixed with %
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.wdc-toolchain'
+      }
+      # binary suffixed with B
+      {
+        match: '[01]+(?i:b)'
+        name: 'constant.numeric.binary.wdc-toolchain'
+      }
+      # octal and decimal
+      {
+        match: '\\b([0-9]+(d|o|q)?)\\b'
+        name: 'constant.numeric.decimal.wdc-toolchain'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # File and Symbol control
+      {
+        match:  '\\b(?i:append|include|insert|end(s|mod)?|exit|module|section|org|origin|equ(al)?|gequ|defl|set|var|extern(al|s)?|xref|globals?|public|xdef|message|messg|efunc|incdebug)\\b'
+        name:   'support.function.pseudo.wdc-toolchain'
+      }
+      # Parsing control
+      {
+        match:  '\\b(?i:case|chip|chkimmed|comment|dbreg|dpage|long[ai]|radix|spaces|llchar|bit7|mask|squote|twochar|asc(ii)?|fcc|date|da|d?byte|d(ef)?b|fcb|string|dc|d(ef)?w|fdb|l?word|dl|longw?|blk[blw]|defs|ds(a|b|l|w)?|rmb|apwdc|float|double)\\b'
+        name:   'support.function.pseudo.wdc-toolchain'
+      }
+      # Macro control
+      {
+        match:  '\\b(?i:macro|endm|macend|argchk|macfirst|macdelim|macexit|ifma|ifnma|rept|endr)\\b'
+        name:   'support.function.pseudo.wdc-toolchain'
+      }
+      # Conditional control
+      {
+        match:  '\\b(?i:end(c|if)?|cond|ifn?(false|true|z|abs|rel|def|diff|same|ext|page0)?|if(long|short)[ai]|ifmatch|else)\\b'
+        name:   'keyword.control.conditional.wdc-toolchain'
+      }
+      # Listing control
+      {
+        match:  '\\b(?i:pl|pw|top|heading|nam|title|s?ttl|subtitle|subttl|eject|page?|(no?)?list|(inc|asc|cond|m(ac)?|mn)list|pass1)\\b'
+        name:   'support.function.pseudo.wdc-toolchain'
+      }
+      # Pre-defined sections
+      {
+        match:  '\\b(?i:page0|code|(k|u)?data)\\b'
+        name:   'constant.other.wdc-toolchain'
+      }
+      # Operators
+      {
+        match:  '!|\\+|\\-|\\/|\\*|<<|>>|&|\\||\\^|=|<|>|\\:|\\|\\|'
+        name:   'keyword.operator.wdc-toolchain'
+      }
+      # Operators II
+      {
+        match:  '\\b(?i:and|not|mod|sh[lr]|x?or|eq|u?[gl]t)\\b'
+        name:   'keyword.operator.wdc-toolchain'
+      }
+    ]
