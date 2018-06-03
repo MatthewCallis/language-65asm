@@ -82,7 +82,7 @@ repository:
       }
       # Macro control
       {
-        match:  '\\b(?i:\!macro|\+[a-zA-Z0-9)\\b'
+        match:  '\\b(?i:!macro|\\+[a-zA-Z0-9])\\b'
         name:   'support.function.pseudo.acme'
       }
       # Conditional control
