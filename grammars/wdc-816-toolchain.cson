@@ -1,6 +1,6 @@
 # Syntax Highlighting for the Western Design Center toolchain and 65816 support
 
-scopeName: 'source.wdc-816-toolchain'
+scopeName: 'source.assembly.65816.wdc-816-toolchain'
 name: '65816 Assembly (WDCTools)'      # Name shown in Atom Editor grammar selection
 # File extensions associated with this grammar
 fileTypes: [

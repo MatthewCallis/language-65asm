@@ -2,7 +2,7 @@
 # Improvements: absolut addresses/numbers, equ, seg, ds, word
 # Not working: labels
 
-scopeName: 'source.dasm-6502'   # Prevents conflicts with other architectures supported by dasm
+scopeName: 'source.assembly.6502.dasm-6502'   # Prevents conflicts with other architectures supported by dasm
 name: '6502 Assembly (DASM)'    # Name shown in Atom Editor grammar selection'fileTypes': []
 foldingStartMarker: '/\\*\\*|\\{\\s*$'
 foldingStopMarker: '\\*\\*/|^\\s*\\}'

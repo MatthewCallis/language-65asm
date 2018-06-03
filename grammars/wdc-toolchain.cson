@@ -1,7 +1,7 @@
 # Syntax Highlighting for the Western Design Center toolchain and 6502 support
 # TODO: extra addressing modes, chip point prefix, * comments
 
-scopeName: 'source.wdc-toolchain'
+scopeName: 'source.assembly.6502.wdc-toolchain'
 name: '6502 Assembly (WDCTools)'      # Name shown in Atom Editor grammar selection
 # File extensions associated with this grammar
 fileTypes: [
