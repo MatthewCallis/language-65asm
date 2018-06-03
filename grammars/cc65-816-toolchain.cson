@@ -1,13 +1,14 @@
 # Syntax Highlighting for the cc65 toolchain and 65816 support
 
-scopeName: 'source.cc65-816-toolchain'
+scopeName: 'source.assembly.65816.cc65-816-toolchain'
 name: '65816 Assembly (cc65)'      # Name shown in Atom Editor grammar selection
 # File extensions associated with this grammar
 fileTypes: [
   's'
 ]
+# include all opcodes and directives the toolchain supports
 patterns: [
-  { include:  'source.65816-opcodes' }   # add basic 65816 instruction set, includes 6502 and 65c02 opcodes
-  { include:  'source.6502x-opcodes' }   # extend with 6502X opcodes
-  { include:  'source.cc65-directives' } # include the directives for the cc65 toolchain
+  { include: 'source.65816-opcodes' }   # add basic 65816 instruction set, includes 6502 and 65c02 opcodes
+  { include: 'source.6502x-opcodes' }   # extend with 6502X opcodes
+  { include: 'source.cc65-directives' } # include the directives for the cc65 toolchain
 ]

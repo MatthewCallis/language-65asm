@@ -1,0 +1,65 @@
+# Generic 65816 grammar with semicolon comments
+
+scopeName: 'source.assembly.65816.65816-generic'
+fileTypes: []
+name: '65816 Assembly'
+patterns: [
+  { include: 'source.65816-opcodes' }  # add basic 65816 instruction set, includes 6502 and 65c02 opcodes
+  { include: 'source.65816l-opcodes' } # extend with 6502X opcodes
+  { include: '#comments' }
+  { include: '#symbols' }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
+      {
+        match:  ';.*$'
+        name:   'comment.line.semicolon.65816-generic'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.65816-generic'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.65816-generic'
+        name: 'string.quoted.double.assembly.65816-generic'
+      }
+      # absolut address/number
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.65816-generic'
+      }
+      # hex, prefixed with ampersand($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.65816-generic'
+      }
+      # hex, suffixed with h(h)
+      {
+        match: '-?([0-9]+)h'
+        name: 'constant.numeric.hex.65816-generic'
+      }
+      # binary
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.65816-generic'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.65816-generic'
+      }
+    ]
