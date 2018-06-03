@@ -9,6 +9,6 @@ fileTypes: [
 ]
 # include all opcodes and directives the toolchain supports
 patterns: [
-  { include:  'source.65c02-opcodes' }   # the 65c02 opcodes, includes the basic 6502 instruction set
-  { include:  'source.wdc-directives' }  # include the directives of the WDCxAS assemblers
+  { include: 'source.65c02-opcodes' }   # the 65c02 opcodes, includes the basic 6502 instruction set
+  { include: 'source.wdc-directives' }  # include the directives of the WDCxAS assemblers
 ]
