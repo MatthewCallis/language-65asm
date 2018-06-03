@@ -72,22 +72,27 @@ repository:
     patterns: [
       # File and Symbol control
       {
-        match:  '\\b\!(?i:source|src|eof|endoffile|pseudopc|zn|zone|set|to|bin(ary)?|sl|warn|error|serious)\\b'
+        match:  '!\\b(?i:source|src|eof|endoffile|realpc|pseudopc|zn|(sub)?zone|set|to|bin(ary)?|sl|symbollist|warn|error|serious|initmem|cbm|addr(ess)?)\\b'
         name:   'support.function.pseudo.acme'
       }
       # Parsing control
       {
-        match:  '\\b\!(?i:cpu|al|as|rl|rs|8|by|byte|16|wo|word|24|32|h|hex|fi|fill|align|skip|ct|convtab|tx|text|pet|scr|scrxor|raw)\\b'
+        match:  '!\\b(?i:cpu|al|as|rl|rs|08|by|byte|([bl]e)?(16|24|32)|wo|word|h|hex|fi|fill|align|skip|ct|convtab|tx|text|pet|scr|scrxor|raw)\\b'
         name:   'support.function.pseudo.acme'
       }
       # Macro control
       {
-        match:  '\\b(?i:!macro|\\+[a-zA-Z0-9])\\b'
+        match:  '(?i:!\\bmacro|\\+[a-zA-Z0-9])\\b'
         name:   'support.function.pseudo.acme'
       }
       # Conditional control
       {
-        match:  '\\b(?i:\!if|else|\!if(n)?def|\!for|\!do|while|until)\\b'
+        match:  '!\\b(?i:if|if(n)?def|for|do|while|until)\\b'
+        name:   'keyword.control.conditional.acme'
+      }
+      # Conditional control II
+      {
+        match:  '\\b(?i:else|while|until)\\b'
         name:   'keyword.control.conditional.acme'
       }
       # Operators
