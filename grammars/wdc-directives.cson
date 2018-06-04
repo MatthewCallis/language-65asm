@@ -3,17 +3,9 @@
 scopeName: 'source.wdc-directives'
 
 patterns: [
-  {
-    include: '#comments'
-  }
-  # symbols, constants, numbers
-  {
-    include: '#symbols'
-  }
-  # directives
-  {
-    include: '#directives'
-  }
+  { include: '#comments' }
+  { include: '#symbols' }   # symbols, constants, numbers
+  { include: '#directives' }
 ]
 
 # Repository starts here ------------------------------------------------------
