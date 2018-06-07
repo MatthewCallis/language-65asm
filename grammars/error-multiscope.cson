@@ -1,0 +1,23 @@
+scopeName: 'source.multi1'
+patterns: [
+  { include: '#binnum' }
+  { include: '#hexnum' }
+]
+
+repository:
+  # Binary numbers
+  binnum:
+    patterns: [
+      {
+        match:  '%[01]+'
+        name:   'constant.numeric.binary.multi1'
+      }
+    ]
+
+  hexnum:
+    patterns: [
+      {
+        match:  '\\$[a-zA-Z0-9]+\\b'
+        name:   'constant.numeric.binary.multi1'
+      }
+    ]
