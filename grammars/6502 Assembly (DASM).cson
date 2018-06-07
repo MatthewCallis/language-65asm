@@ -7,7 +7,7 @@ patterns: [
   { include: 'source.6502-opcodes' }
   { include: '#comments' }
   { include: '#symbols' }
-  # { include: '#directives' }
+  { include: '#directives' }
 ]
 
 # Repository starts here ------------------------------------------------------
@@ -38,29 +38,45 @@ repository:
             name: 'punctuation.definition.string.end.dasm'
         name: 'string.quoted.double.dasm'
       }
+      # global labels
+      {
+        captures:
+          1:
+            name: 'entity.name.function.label.dasm'
+        match: '\\b([A-Za-z0-9_]+):'
+        name: 'meta.function.label.dasm'
+      }
+      # local labels
+      {
+        captures:
+          1:
+            name: 'entity.name.function.label.dasm'
+        match: '\\.\\b([A-Za-z0-9_]+):'
+        name: 'meta.function.label.dasm'
+      }
       # absolut addressing/numbers
-      # {
-      #   match: '\\#(\'.\'|[^\\s\']+)'
-      #   name: 'constant.numeric.hex.dasm'
-      # }
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.dasm'
+      }
       # hex, prefixed with dollar sign($)
       {
-        match: '-?#?\\$\\b[a-fA-F0-9]+\\b'
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.dasm'
       }
       # octal, prefixed with zero(0)
       {
-        match: '-?#?\\b0[1-7]+\\b'
+        match: '-?\\b0[1-7]+\\b'
         name: 'constant.numeric.octal.dasm'
       }
       # binary
       {
-        match: '#?%[01]+'
+        match: '%[01]+'
         name: 'constant.numeric.binary.65816-generic'
       }
       # decimal
       {
-        match: '#?\\b([0-9]+)\\b'
+        match: '\\b([0-9]+)\\b'
         name: 'constant.numeric.decimal.65816-generic'
       }
     ]
@@ -70,22 +86,27 @@ repository:
     patterns: [
       # file and symbol control
       {
-        match: '\\b(?i:seg(\\.u)?|include|incbin|incdir|hex|err|r?org|processor|echo|rend|align|subroutine|)\\b'
+        match: '\\b(?i:seg(\\.u)?|include|incbin|incdir|hex|err|r?org|processor|echo|rend|align|subroutine)\\b'
         name: 'support.function.pseudo.dasm'
       }
       # data control
-      # {
-      #   match: '\\b(?i:d[csv](.bwl)?|hex|eq[um]|set|list\\s(on|off))\\b'
-      #   name: 'support.function.pseudo.dasm'
-      # }
+      {
+        match: '\\b(?i:d[csv](.bwl)?|hex|eq[um]|set|list\\s(on|off))\\b'
+        name: 'support.function.pseudo.dasm'
+      }
+      # data control II
+      {
+        match: '\\.\\b(?i:byte|word)\\b'
+        name: 'support.function.pseudo.dasm'
+      }
       # Macro control
-      # {
-      #   match:  '\\b(?i:mac|endm|mexit)\\b'
-      #   name:   'support.function.pseudo.acme'
-      # }
+      {
+        match:  '\\b(?i:mac|endm|mexit)\\b'
+        name:   'support.function.pseudo.acme'
+      }
       # Conditional control
-      # {
-      #   match:  '\\b(?i:ifn?const|if|else|e(nd)?if|repeat|repend)\\b'
-      #   name:   'keyword.control.conditional.acme'
-      # }
+      {
+        match:  '\\b(?i:ifn?const|if|else|e(nd)?if|repeat|repend)\\b'
+        name:   'keyword.control.conditional.acme'
+      }
     ]
