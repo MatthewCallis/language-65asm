@@ -35,7 +35,7 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.65c02-generic'
-        name: 'string.quoted.double.assembly.65c02-generic'
+        name: 'string.quoted.double.65c02-generic'
       }
       # absolut address/number
       {
@@ -44,7 +44,7 @@ repository:
       }
       # hex, prefixed with ampersand($)
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '-?\\$\\b[A-Fa-f0-9]+\\b'
         name: 'constant.numeric.hex.65c02-generic'
       }
       # hex, suffixed with h(h)

@@ -34,7 +34,7 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.wdc-toolchain'
-        name: 'string.quoted.double.assembly.wdc-toolchain'
+        name: 'string.quoted.double.wdc-toolchain'
       }
       # absolut addressing/numbers
       {
@@ -43,7 +43,7 @@ repository:
       }
       # hex, prefixed with dollar sign($)
       {
-        match: '-?\\$\\b[a-fA-F0-9]+'
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.wdc-toolchain'
       }
       # hex, suffixed with h(h)
