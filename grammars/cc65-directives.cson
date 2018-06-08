@@ -24,6 +24,7 @@ repository:
   # symbols
   symbols:
     patterns: [
+      # strings
       {
         begin: '"'
         beginCaptures:
@@ -33,21 +34,21 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.cc65-directives'
-        name: 'string.quoted.double.assembly.cc65-directives'
+        name: 'string.quoted.double.cc65-directives'
       }
-      # absolut address/number
+      # absolut addressing/numbers
       {
         match: '\\#(\'.\'|[^\\s\']+)'
         name: 'constant.numeric.hex.cc65-directives'
       }
-      # hex, prefixed with ampersand($)
+      # hex, prefixed with dollar sign($)
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.cc65-directives'
       }
       # hex, suffixed with h(h)
       {
-        match: '-?([0-9]+)h'
+        match: '-?\\b([a-fA-F0-9]+)h'
         name: 'constant.numeric.hex.cc65-directives'
       }
       # binary

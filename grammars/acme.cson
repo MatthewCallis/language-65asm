@@ -43,7 +43,7 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.acme'
-        name: 'string.quoted.double.assembly.acme'
+        name: 'string.quoted.double.acme'
       }
       # absolut addressing/numbering
       {

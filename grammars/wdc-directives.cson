@@ -34,21 +34,21 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.wdc-toolchain'
-        name: 'string.quoted.double.assembly.wdc-toolchain'
+        name: 'string.quoted.double.wdc-toolchain'
       }
-      # absolut addressing/numbering
+      # absolut addressing/numbers
       {
         match: '\\#(\'.\'|[^\\s\']+)'
         name: 'constant.numeric.hex.wdc-toolchain'
       }
-      # hex, prefixed with ampersand($)
+      # hex, prefixed with dollar sign($)
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.wdc-toolchain'
       }
       # hex, suffixed with h(h)
       {
-        match: '-?([0-9]+)h'
+        match: '-?\\b([a-fA-F0-9]+)h'
         name: 'constant.numeric.hex.wdc-toolchain'
       }
       # binary prefixed with %
@@ -63,7 +63,7 @@ repository:
       }
       # octal and decimal
       {
-        match: '\\b([0-9]+(d|o|q)?)\\b'
+        match: '\\b([0-9]+[doq]?)\\b'
         name: 'constant.numeric.decimal.wdc-toolchain'
       }
     ]
@@ -73,7 +73,7 @@ repository:
     patterns: [
       # File and Symbol control
       {
-        match:  '\\b(?i:append|include|insert|end(s|mod)?|exit|module|section|org|origin|equ(al)?|gequ|defl|set|var|extern(al|s)?|xref|globals?|public|xdef|message|messg|efunc|incdebug)\\b'
+        match:  '\\b(?i:append|include|insert|end(s|mod)?|exit|module|section|ref_only|org|origin|equ(al)?|gequ|defl|set|var|extern(al|s)?|xref|globals?|public|xdef|message|messg|efunc|incdebug)\\b'
         name:   'support.function.pseudo.wdc-toolchain'
       }
       # Parsing control
@@ -108,7 +108,7 @@ repository:
       }
       # Operators II
       {
-        match:  '\\b(?i:and|not|mod|sh[lr]|x?or|eq|u?[gl]t)\\b'
+        match:  '\\.\\b(?i:and|not|mod|sh[lr]|x?or|eq|u?[gl]t)\\b\\.'
         name:   'keyword.operator.wdc-toolchain'
       }
     ]

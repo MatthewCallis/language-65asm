@@ -35,21 +35,21 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.65816-generic'
-        name: 'string.quoted.double.assembly.65816-generic'
+        name: 'string.quoted.double.65816-generic'
       }
       # absolut address/number
       {
         match: '\\#(\'.\'|[^\\s\']+)'
         name: 'constant.numeric.hex.65816-generic'
       }
-      # hex, prefixed with ampersand($)
+      # hex, prefixed with dollar sign($)
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.65816-generic'
       }
       # hex, suffixed with h(h)
       {
-        match: '-?([0-9]+)h'
+        match: '-?([a-fA-F0-9]+)h'
         name: 'constant.numeric.hex.65816-generic'
       }
       # binary
