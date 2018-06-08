@@ -225,4 +225,4 @@
   'octal_number':
     'match': '@([0-7]+)\\b'
     'name': 'constant.numeric.octal'
-'scopeName': 'source.assembly.65816.merlin'
+'scopeName': 'source.assembly.65816.merlinold'
