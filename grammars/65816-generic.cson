@@ -5,7 +5,7 @@ fileTypes: []
 name: '65816 Assembly'
 patterns: [
   { include: 'source.65816-opcodes' }  # add basic 65816 instruction set, includes 6502 and 65c02 opcodes
-  { include: 'source.65816l-opcodes' } # extend with 6502X opcodes
+  { include: 'source.65816l-opcodes' } # extend with 65816L opcodes
   { include: '#comments' }
   { include: '#symbols' }
 ]

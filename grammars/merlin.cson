@@ -1,228 +1,217 @@
-'fileTypes': []
-'name': 'Merlin'
-'patterns': [
-  {
-    'include': '#M6502'
-  }
-  {
-    'include': '#M65C02'
-  }
-  {
-    'include': '#M65816'
-  }
-  {
-    'include': '#M65816L'
-  }
-  {
-    'include': '#hex_number'
-  }
-  {
-    'include': '#decimal_number'
-  }
-  {
-    'match': '%[01][01_]*'
-    'name': 'constant.numeric.binary'
-  }
-  {
-    'match': '\\b(?i:TAS|TSA|SWA|TAD|TDA|BLT|BGE)\\b'
-    'name': 'keyword.mnemonic.65816.alt'
-  }
-  {
-    'match': '(?<=,)([xXyYsS])\\b'
-    'name': 'variable.language.register'
-  }
-  {
-    'begin': '"'
-    'end': '"'
-    'name': 'string.quoted.double'
-  }
-  {
-    'begin': '\''
-    'end': '\''
-    'name': 'string.quoted.single'
-  }
-  {
-    'match': '^[*].*'
-    'name': 'comment.line'
-  }
-  {
-    'match': ';.*'
-    'name': 'comment.line'
-  }
-  {
-    'match': '^][0-~]*\\b'
-    'name': 'entity.name.label.variable'
-  }
-  {
-    'match': '^:[0-~]*\\b'
-    'name': 'entity.name.label.local'
-  }
-  {
-    'match': '^[:-~][0-~]*\\b'
-    'name': 'entity.name.function'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'string.quoted.other.path'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)DSK|PUT|USE|SAV)\\s+(\\S*)'
-    'name': 'meta.path.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'constant.language'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)CYC)\\s+((?i)ON|OFF|AVE)\\b'
-    'name': 'meta.cyc.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'constant.language'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)EXP)\\s+((?i)ON|OFF|ONLY)\\b'
-    'name': 'meta.exp.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'constant.language'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)LST)\\s+((?i)ON|OFF|RTN)\\b'
-    'name': 'meta.lst.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'constant.language'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)LST)\\s+((?i)OFF)\\b'
-    'name': 'meta.lstdo.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive'
-      '2':
-        'name': 'constant.language'
-    'comment': 'eg: KEEP pathname'
-    'match': '\\b((?i)TR)\\s+((?i)ON|OFF|ADR)\\b'
-    'name': 'meta.tr.directive'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive.string'
-      '2':
-        'name': 'string.delimited.begin'
-      '3':
-        'name': 'string.delimited'
-      '4':
-        'name': 'string.delimited.end'
-      '5':
-        'name': 'keyword.operator'
-      '6':
-        'name': 'constant.numeric.hexadecimal'
-    'comment': 'optional trailing hex data'
-    'match': '\\b((?i)ASC|DCI|INV|FLS|STR)\\s+(\\S)(.*?)(\\2|$)(,([0-9A-Fa-f]+))?'
-    'name': 'meta.string.delimited'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.directive.string'
-      '2':
-        'name': 'string.delimited.begin'
-      '3':
-        'name': 'string.delimited'
-      '4':
-        'name': 'string.delimited.end'
-    'match': '\\b((?i)REV)\\s+(\\S)(.*?)(\\2|$)'
-    'name': 'meta.string.delimited.rev'
-  }
-  {
-    'begin': '\\b((?i)HEX)\\b'
-    'captures':
-      '1':
-        'name': 'keyword.directive.data'
-    'comment': 'HEX has a list of hex bytes w/o the $'
-    'end': '$'
-    'name': 'meta.hex'
-    'patterns': [
+scopeName: 'source.assembly.65816.merlin'
+fileTypes: []
+name: 'Merlin'
+patterns: [
+  { include: 'source.65c02-opcodes' }
+  { include: 'source.65816-opcodes' }
+  { include: 'source.65816l-opcodes' }
+  { include: 'source.65816alt-opcodes' }
+  { include: '#comments' }
+  { include: '#symbols' }
+  { include: '#directives' }
+  # registers
+  # TODO: fix registers
+  # {
+  #   'match': '(?<=,)([xXyYsS])\\b'
+  #   'name': 'variable.language.register'
+  # }
+]
+
+
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # asterisk line comment
       {
-        'match': '\\b[0-9A-Fa-f]{1,2}\\b'
-        'name': 'constant.numeric.hex'
+        match: '^[*].*'
+        name: 'comment.line.asterisk.merlin'
       }
+      # semicolon line comment
       {
-        'match': ';.*$'
-        'name': 'comment.line'
-      }
-      {
-        'match': ','
-        'name': 'keyword.operator'
-      }
-      {
-        'match': '\\S'
-        'name': 'invalid.illegal'
+        match: ';.*$'
+        name: 'comment.line.semicolon.merlin'
       }
     ]
-  }
-  {
-    'match': '\\b(?i:DSK|EQU|EXT|ENT|ORG|REL|OBJ|PUT|USE|VAR|SAV|TYP|END|DUM|DEND|AST|CYC|DAT|EXP|LST|LSTDO|PAG|TTL|SKP|TR|CHK|ERR|KBD|LUP|--\\^|MX|PAU|SW|USR|XC)\\b'
-    'name': 'keyword.directive'
-  }
-  {
-    'match': '\\b(?i:DA|DW|DDB|DB|DFB|ADR|ADRL|HEX|DS|ASC|DCI|INV|FLS|REV|STR)\\b'
-    'name': 'keyword.directive.data'
-  }
-  {
-    'match': '\\b(?i:DO|ELSE|IF|FIN)\\b'
-    'name': 'keyword.control.conditional'
-  }
-  {
-    'match': '\\b(?i:MAC)\\b|<<<'
-    'name': 'keyword.directive.macro'
-  }
-  {
-    'match': '[-+/*^><|#\\[\\](),=.!&]'
-    'name': 'keyword.operator'
-  }
-]
-'repository':
-  'M6502':
-    'match': '\\b(?i:ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b'
-    'name': 'keyword.mnemonic.6502'
-  'M65816':
-    'match': '\\b(?i:BRL|COP|JML|JSL|MVN|MVP|PEA|PEI|PER|PHB|PHD|PHK|PLB|PLD|REP|RTL|SEP|TCD|TCS|TDC|TSC|TXY|TYX|WDM|XBA|XCE)\\b'
-    'name': 'keyword.mnemonic.65816'
-  'M65816L':
-    'match': '\\b(?i:ADCL|ANDL|CMPL|EORL|LDAL|ORAL|SBCL|STAL)\\b'
-    'name': 'keyword.mnemonic.65816.long'
-  'M65C02':
-    'match': '\\b(?i:BRA|PHX|PHY|PLX|PLY|STP|STZ|TRB|TSB|WAI)\\b'
-    'name': 'keyword.mnemonic.65c02'
-  'binary_number':
-    'match': '%[01]+'
-    'name': 'constant.numeric.binary'
-  'decimal_number':
-    'match': '\\b([0-9]+)\\b'
-    'name': 'constant.numeric.decimal'
-  'hex_number':
-    'match': '\\$[A-Fa-f0-9]+'
-    'name': 'constant.numeric.hex'
-  'octal_number':
-    'match': '@([0-7]+)\\b'
-    'name': 'constant.numeric.octal'
-'scopeName': 'source.assembly.65816.merlin'
+
+  # symbols
+  symbols:
+    patterns: [
+    # delimited strings
+      {
+        begin: '[\'"]'
+        beginCaptures:
+          0: name: 'punctuation.definition.string.begin.merlin'
+        end: '[\'"]'
+        endCaptures:
+          0: name: 'punctuation.definition.string.end.merlin'
+        name: 'string.quoted.double.assembly.merlin'
+      }
+    # TODO: highlight strings with all valid delimiters
+      # {
+      #   captures:
+      #     1: name: 'string.delimited.begin.merlin'
+      #     2: name: 'string.delimited.merlin'
+      #     3: name: 'string.delimited.end.merlin'
+      #   match: '\\b(\\S)(.*?)(\\1)\\b'
+      # }
+      # TODO: fix label scopes
+      # Variables
+      {
+        match:  '^][:-~][0-~]+'
+        # name:   'variable.named.merlin'
+        name:   'entity.name.function.label.merlin'
+      }
+      # Local labels
+      {
+        match:  '^:[:-~][0-~]+'
+        name:   'entity.name.function.label.merlin'
+      }
+      # Global labels
+      {
+        match:  '^[:-~][0-~]+'
+        name:   'entity.name.function.merlin'
+      }
+      # absolut address/number
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.merlin'
+      }
+      # hex, prefixed with ampersand($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.merlin'
+      }
+      # octal, prefixed with @
+      {
+        match: '@([0-7]+)\\b'
+        name: 'constant.numeric.octal.merlin'
+      }
+      # binary
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.merlin'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.merlin'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # file control
+      {
+        match: '\\b(?i:equ|ext|ent|org|rel|obj|var|typ|end|dum|dend|ast|dat|lstdo|pag|ttl|skp|chk|err|kbd|lup|--\\^|mx|pau|sw|usr|xc)\\b'
+        name: 'keyword.directive.merlin'
+      }
+      # data control
+      {
+        match: '\\b(?i:da|dw|ddb|db|dfb|adr|adrl|ds)\\b'
+        name: 'support.function.pseudo.merlin'
+      }
+      # conditional control
+      {
+        match: '\\b(?i:do|else|if|fin)\\b'
+        name: 'keyword.control.conditional.merlin'
+      }
+      # macro control
+      {
+        match: '\\b(?i:mac)\\b|<<<'
+        name: 'support.function.pseudo.merlin'
+        # name: 'keyword.directive.macro.merlin'
+      }
+      # operators
+      {
+        match: '[-+/*^><|#\\[\\](),=.!&]'
+        name: 'keyword.operator.merlin'
+      }
+      # disk commands
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'string.quoted.other.path.merlin'
+        match: '\\b((?i:dsk|put|use|sav))\\s+(\\S*)'
+        name: 'meta.disk.directive.merlin'
+      }
+      # cycle count
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'constant.language.merlin'
+        match: '\\b((?i:cyc))\\s+((?i:on|off|ave))\\b'
+        name: 'meta.cyc.directive.merlin'
+      }
+      # expand control
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'constant.language.merlin'
+        match: '\\b((?i:exp))\\s+((?i:on|off|only))\\b'
+        name: 'meta.exp.directive.merlin'
+      }
+      # list control
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'constant.language.merlin'
+        match: '\\b((?i:lst))\\s+((?i:off))\\b'
+        name: 'meta.exp.directive.merlin'
+      }
+      # truncation control
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'constant.language.merlin'
+        match: '\\b((?i:tr))\\s+((?i:on|off|adr))\\b'
+        name: 'meta.tr.directive.merlin'
+      }
+      # string command
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'string.delimited.begin.merlin'
+          3: name: 'string.delimited.merlin'
+          4: name: 'string.delimited.end.merlin'
+          5: name: 'constant.numeric.hex.merlin'
+        match: '\\b((?i:asc|dci|inv|fls|str))\\s+(\\S)(.*?)(\\2|\\S),([a-fA-F0-9]+)?'
+      }
+      # reverse command
+      {
+        captures:
+          1: name: 'support.function.pseudo.merlin'
+          2: name: 'string.delimited.begin.merlin'
+          3: name: 'string.delimited.merlin'
+          4: name: 'string.delimited.end.merlin'
+        match: '\\b((?i:rev))\\s+(\\S)(.*?)(\\2|$)'
+      }
+      # hex command
+      {
+        begin: '\\b((?i:hex))\\b'
+        captures:
+          1:
+            name: 'support.function.pseudo.merlin'
+        end: '$'
+        name: 'meta.hex.directive.merlin'
+        patterns: [
+          # hex without $
+          {
+            match: '\\b[a-fA-F0-9]{1,2}\\b'
+            name: 'constant.numeric.hex.merlin'
+          }
+          # semicolon comments
+          {
+            match: ';.*'
+            name: 'comment.line.semicolon.merlin'
+          }
+          # number check
+          {
+            match: '(?!,)\\S'
+            name: 'invalid.illegal.merlin'
+          }
+        ]
+      }
+    ]
