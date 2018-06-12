@@ -43,12 +43,12 @@ repository:
       }
       # hex, prefixed with dollar sign($)
       {
-        match: '-?\\$\\b[a-fA-F0-9]+\\b'
+        match: '\\$\\b[a-fA-F0-9]+\\b'
         name: 'constant.numeric.hex.cc65-linker-config'
       }
       # hex, suffixed with h(h)
       {
-        match: '-?\\b([a-fA-F0-9]+)h\\b'
+        match: '\\b([a-fA-F0-9]+)h\\b'
         name: 'constant.numeric.hex.cc65-linker-config'
       }
       # binary
@@ -81,21 +81,21 @@ repository:
       # linker constants
       {
         match:  '\\b(__NAME_LOAD__|__NAME_RUN__|__NAME_SIZE__|__DATA_LOAD__|__DATA_RUN__|__DATA_SIZE__|__STACK_START__|__STACK_SIZE__|__STACK_LAST__|__STACK_FILEOFFS__)\\b'
-        name:   'constant.language.cc65-directives'
+        name:   'constant.language.cc65-linker-config'
       }
       # address sizes, functions
       {
-        match:  '\\b(?i:direct|zeropage|zp|absolut|abs|near|far|long|dword|atari|cbm|cpu|generic|longbranch|yes|ro|rw|bss)\\b'
-        name:   'constant.other.cc65-directives'
+        match:  '\\b(?i:direct|zeropage|zp|absolut|abs|near|far|long|dword|atari|cbm|cpu|generic|longbranch|yes|ro|rw|bss|weak)\\b'
+        name:   'constant.other.cc65-linker-config'
       }
       # case sensitive symbols
       {
-        match:  '\\b(\\%\\bO|o65)\\b'
-        name:   'constant.other.cc65-directives'
+        match:  '(%\\bO|\\bo65)\\b'
+        name:   'constant.other.cc65-linker-config'
       }
       # operators
       {
         match:  '='
-        name:   'keyword.operator.cc65-directives'
+        name:   'keyword.operator.cc65-linker-config'
       }
     ]
