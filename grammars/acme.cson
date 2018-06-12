@@ -11,10 +11,10 @@ patterns: [
   { include:  'source.6502-opcodes' }
   { include:  'source.6502x-opcodes' }
   { include: '#comments' }
-  # symbols, constants, numbers
-  { include: '#symbols' }
   # directives
   { include: '#directives' }
+  # symbols, constants, numbers
+  { include: '#symbols' }
 ]
 
 # Repository starts here ------------------------------------------------------
@@ -33,72 +33,99 @@ repository:
   # symbols
   symbols:
     patterns: [
+      # Labels (at beginning of a line)
+      {
+        match: '^[A-Za-z\\._][A-Za-z0-9_:]*'
+        name: 'entity.name.function.acme'
+      }
+      # this section hilights labels as variables: results in pretty colorful listings, maybe you like it
+      # Labels inline
+      # {
+      #   match: '\\b[A-Za-z][A-Za-z0-9_:]*\\b'
+      #   name:  'variable.language'
+      # }
+      # Register A (like in ASL A)
+      {
+        match: '\\b[aA]\\b'
+        name: 'variable.language.register.acme'
+      }
+      # Registers X and Y (like in LDA $1000,X or LDA ($30),Y )
+      {
+        match: '(?<=,)([xXyY])\\b'
+        name: 'variable.language.register.acme'
+      }
       # strings
       {
         begin: '"'
-        beginCaptures:
-          0:
-            name: 'punctuation.definition.string.begin.acme'
         end: '"'
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.acme'
         name: 'string.quoted.double.acme'
       }
-      # absolut addressing/numbering
       {
-        match: '\\#(\'.\'|[^\\s\']+)'
+        begin: '\''
+        end: '\''
+        name: 'string.quoted.single.assembly.acme'
+      }
+      # absolut addressing/numbering (including lo/hibyte by < or >)
+      {
+        match: '\\#(\\>?\\<?\\(?\\$?\\w*\\)?|[^\\s]\\h?*)'
         name: 'constant.numeric.hex.acme'
       }
-      # hex, prefixed with dollar ($)
+      # hex, prefixed with dollar ($) or 0x
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '\\$\\h+|0x\\h+'
         name: 'constant.numeric.hex.acme'
       }
       # binary prefixed with %
       {
-        match: '%[01]+'
+        match: '%[01]+|%[\\#\\.]+|0b[01]+|0b[\\#\\.]+'
         name: 'constant.numeric.binary.acme'
       }
-      # decimal
+      # Float
       {
-        match: '\\b([0-9]+)\\b'
+        match: '\\d*\\.\\d+\\b'
+        name: 'constant.numeric.float.acme'
+      }
+      # Decimal (but not float)
+      {
+        match: '\\b\\d+\\b'
         name: 'constant.numeric.decimal.acme'
+      }
+      # Cctal
+      {
+        match: '&([0-7]+)\\b'
+        name: 'constant.numeric.octal.acme'
       }
     ]
 
   # assembler directives
   directives:
     patterns: [
-      # File and Symbol control
+      # File and Symbol Control (pseudos)
       {
-        match:  '!\\b(?i:source|src|eof|endoffile|realpc|pseudopc|zn|(sub)?zone|set|to|bin(ary)?|sl|symbollist|warn|error|serious|initmem|cbm|addr(ess)?)\\b'
+        match:  '\\!(?i:source|src|pseudopc|zn|zone|to|bin(ary)?|symbollist|sl|initmem)\\b'
         name:   'support.function.pseudo.acme'
       }
-      # Parsing control
+      # Parsing Control (more pseudos)
       {
-        match:  '!\\b(?i:cpu|al|as|rl|rs|08|by|byte|([bl]e)?(16|24|32)|wo|word|h|hex|fi|fill|align|skip|ct|convtab|tx|text|pet|scr|scrxor|raw)\\b'
+        match:  '\\!(?i:macro|cpu|al|as|rl|rs|8|by|byte|le16|be16|16|wo|word|le24|be24|24|le32|be32|32|hex|h|fill|fi|align|skip|ct|convtab|tx|text|pet|scr|scrxor|raw|address|addr)\\b'
         name:   'support.function.pseudo.acme'
       }
-      # Macro control
+      # Conditional Control
       {
-        match:  '(?i:!\\bmacro|\\+[a-zA-Z0-9])\\b'
-        name:   'support.function.pseudo.acme'
-      }
-      # Conditional control
-      {
-        match:  '!\\b(?i:if|if(n)?def|for|do|while|until)\\b'
+        match:  '\\!(?i:if|if(n)?def|for|do|set|warn|error|serious|eof|endoffile)\\b'
         name:   'keyword.control.conditional.acme'
       }
-      # Conditional control II
       {
-        match:  '\\b(?i:else|while|until)\\b'
+        match:  '(?i:while|until|else)\\b'
         name:   'keyword.control.conditional.acme'
       }
       # Operators
       {
-        match:  '!|\\+|\\-|\\/|\\*|<<|>>|&|\\||\\^|=|<|>|\\:|\\|\\|'
-        name:   'keyword.operator.acme'
+        match:  '\\!|\\+|\\-|\\/|\\*|<<|>>|&|\\||\\^|=|<|>|\\:|\\|\\|'
+        name:   'keyword.operator'
       }
       # Operators II
       {
