@@ -1,0 +1,101 @@
+# Syntax Highlighting for linker config files used with ld65 of the cc65 toolchain
+
+scopeName: 'source.assembly.cc65-linker-config'
+name: 'Linker Config File (cc65)'      # Name shown in Atom Editor grammar selection
+# File extensions associated with this grammar
+fileTypes: [
+  'cfg'
+  'txt'
+]
+# include all directives and commands the toolchain supports
+patterns: [
+  { include: '#comments' }
+  { include: '#symbols' }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # hash comments
+      {
+        match:  '\\#.*$'
+        name:   'comment.line.cc65-linker-config'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      # strings
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.cc65-linker-config'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.cc65-linker-config'
+        name: 'string.quoted.double.cc65-linker-config'
+      }
+      # hex, prefixed with dollar sign($)
+      {
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
+        name: 'constant.numeric.hex.cc65-linker-config'
+      }
+      # hex, suffixed with h(h)
+      {
+        match: '-?\\b([a-fA-F0-9]+)h\\b'
+        name: 'constant.numeric.hex.cc65-linker-config'
+      }
+      # binary
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.cc65-linker-config'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.cc65-linker-config'
+      }
+      # areas
+      {
+        match: '\\b(?i:memory|segments|files|formats|features|symbols|once|lowcode|startup|zpsave)\\b'
+        name: 'storage.modifier.cc65-linker-config'
+      }
+      # labels
+      {
+        captures:
+          1: name: 'entity.name.function.label.cc65-linker-config'
+        match: '\\b([A-Za-z0-9_]+):'
+        name: 'meta.function.label.cc65-linker-config'
+      }
+      # attributes
+      {
+        match: '\\b(?i:load|type|define|start|size|fill|file|run|format|os|version|import|export|label|count|segment|order|default|addrsize)\\b'
+        name: 'storage.modifier.cc65-linker-config'
+      }
+      # linker constants
+      {
+        match:  '\\b(__NAME_LOAD__|__NAME_RUN__|__NAME_SIZE__|__DATA_LOAD__|__DATA_RUN__|__DATA_SIZE__|__STACK_START__|__STACK_SIZE__|__STACK_LAST__|__STACK_FILEOFFS__)\\b'
+        name:   'constant.language.cc65-directives'
+      }
+      # address sizes, functions
+      {
+        match:  '\\b(?i:direct|zeropage|zp|absolut|abs|near|far|long|dword|atari|cbm|cpu|generic|longbranch|yes|ro|rw|bss)\\b'
+        name:   'constant.other.cc65-directives'
+      }
+      # case sensitive symbols
+      {
+        match:  '\\b(\\%\\bO|o65)\\b'
+        name:   'constant.other.cc65-directives'
+      }
+      # operators
+      {
+        match:  '='
+        name:   'keyword.operator.cc65-directives'
+      }
+    ]
