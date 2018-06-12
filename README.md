@@ -3,6 +3,7 @@
 Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with extra support for various compilers:
 
  - [ACME Crossassembler](https://sourceforge.net/projects/acme-crossass/)
+ - [Asar SNES Assembler](https://github.com/RPGHacker/asar)
  - [cc65 (SNES Syntax: 65816, SPC700, SuperFX)](https://github.com/cc65/cc65)
  - [DASM](http://dasm-dillon.sourceforge.net/) (6502)
  - [EDASM](https://archive.org/details/EDASM-ProDOS_Assembler_Tools_Manual)
