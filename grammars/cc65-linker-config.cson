@@ -75,7 +75,7 @@ repository:
       }
       # attributes
       {
-        match: '\\b(?i:load|type|define|start|size|fill|file|run|format|os|version|import|export|label|count|segment|order|default|addrsize)\\b'
+        match: '\\b(?i:load|type|define|start|size|fill|file|run|format|os|version|import|export|label|count|segment|order|default|addrsize|align)\\b'
         name: 'storage.modifier.cc65-linker-config'
       }
       # linker constants
