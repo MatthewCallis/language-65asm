@@ -1,0 +1,29 @@
+# Opcodes for the Sony SPC-700 audio processing unit used in the SNES
+
+scopeName: 'source.spc700-opcodes'
+
+patterns: [
+  # The SPC700 instruction set aliases
+  {
+    include: '#mnemonics-spc700'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # SPC700 instruction set
+  'mnemonics-spc700':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:ADC|ADDW|AND|AND1|ASL|BBC|BBS|BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|BRA|BRK|CALL|CBNE|CLR1|CLRC|CLRP|CLRV|CMP|CMPW|DAA|DAS|DBNZ|DEC|DECW|DI|DIV|EI|EOR|EOR1|INC|INCW|JMP|LSR|MOV|MOV1|MOVW|MUL|NOP|NOT1|NOTC|OR|OR1|PCALL|POP|PUSH|RET|RETI|ROL|ROR|SBC|SET1|SETC|SETP|SLEEP|STOP|SUBW|TCALL|TCLR1|TSET1|XCN)\\b'
+        name:   'keyword.mnemonic.spc700.spc700-opcodes'
+      }
+      # registers
+      {
+        match: '\\b(?i:F[0-9A-F]|SP|PC|PSW)\\b'
+        name: 'support.function.pseudo.spc700-opcodes'
+        # name: 'storage.other.register.spc700-opcodes'
+      }
+    ]

@@ -9,6 +9,8 @@ patterns: [
   { include: 'source.65816-opcodes' }
   { include: 'source.65816l-opcodes' }
   { include: 'source.65816alt-opcodes' }
+  { include: 'source.spc700-opcodes' }
+  { include: 'source.superfx-opcodes' }
   { include: '#comments' }
   { include: '#symbols' }
   { include: '#directives' }
@@ -189,7 +191,7 @@ repository:
       }
       # operators
       {
-        match: '[-+/*^><|#\\[\\](),=.!&]'
+        match: '[-+/*^><|#\\[\\]()=.!&]'
         name: 'keyword.operator.asar'
       }
       # TODO: Add built-in functions
