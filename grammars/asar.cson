@@ -1,0 +1,198 @@
+# Adds Syntax highlighting for the Asar SNES Assembler
+
+scopeName: 'source.assembly.65816.asar'
+fileTypes: [
+  'asm'
+]
+name: 'Asar SNES Assembler'
+patterns: [
+  { include: 'source.65816-opcodes' }
+  { include: 'source.65816l-opcodes' }
+  { include: 'source.65816alt-opcodes' }
+  { include: 'source.spc700-opcodes' }
+  { include: 'source.superfx-opcodes' }
+  { include: '#comments' }
+  { include: '#symbols' }
+  { include: '#directives' }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon line comment
+      {
+        match: ';.*$'
+        name: 'comment.line.semicolon.asar'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      # delimited strings
+      {
+        begin: '"'
+        beginCaptures:
+          0: name: 'punctuation.definition.string.begin.asar'
+        end: '"'
+        endCaptures:
+          0: name: 'punctuation.definition.string.end.asar'
+        name: 'string.quoted.double.assembly.asar'
+      }
+      # labels
+      {
+        captures:
+          1: name: 'entity.name.function.label.asar'
+          2: name: 'entity.name.function.label.asar'
+        match: '(\\.*)\\b([A-Za-z0-9_]+):'
+        name: 'meta.label.asar'
+      }
+      # defines
+      {
+        captures:
+          1: name: 'keyword.operator.asar'
+          2: name: 'entity.name.function.label.asar'
+        match: '(!)\\b([A-Za-z0-9_]+)\\b'
+        name: 'meta.define.asar'
+      }
+      # absolut address/number
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.asar'
+      }
+      # hex, prefixed with ampersand($)
+      {
+        match: '-?\\$[A-Fa-f0-9]+'
+        name: 'constant.numeric.hex.asar'
+      }
+      # binary
+      {
+        match: '-?%[01]+'
+        name: 'constant.numeric.binary.asar'
+      }
+      # decimal
+      {
+        match: '-?\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.asar'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # arch command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'constant.language.asar'
+        match: '\\b(arch)\\s+(65816|spc700(-inline)?|superfx)'
+        name: 'meta.arch.directive.asar'
+      }
+      # warn xkas command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'support.function.pseudo.asar'
+          3: name: 'constant.language.asar'
+        match: '\\b(warn)\\s+(xkas)\\s+(on|off)\\b'
+        name: 'meta.warn.directive.asar'
+      }
+      # math command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'support.function.pseudo.asar'
+          3: name: 'constant.language.asar'
+        match: '\\b(math)\\s+(pri|round)\\s+(on|off)\\b'
+        name: 'meta.math.directive.asar'
+      }
+      # namespace command
+      {
+        begin: '\\b(namespace)\\b'
+        captures:
+          1:
+            name: 'support.function.pseudo.asar'
+        end: '$'
+        name: 'meta.namespace.directive.asar'
+        patterns: [
+          # nested
+          {
+            captures:
+              1: name: 'support.function.pseudo.asar'
+              2: name: 'constant.language.asar'
+            match: '\\b(nested)\\s+(on|off)\\b'
+            name: 'meta.namespace.nested.asar'
+          }
+          # off
+          {
+            match: '\\b(off)\\b'
+            name: 'constant.language.asar'
+          }
+          # identifier
+          {
+            match: '\\b[a-zA-Z0-9_]+\\b'
+            name: 'entity.name.function.label.asar'
+          }
+        ]
+      }
+      # base command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'constant.language.asar'
+        match: '\\b(base)\\s+(off)*'
+        name: 'meta.base.directive.asar'
+      }
+      # bank command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'constant.language.asar'
+        match: '\\b(bank)\\s+(noassume|auto)*'
+        name: 'meta.bank.directive.asar'
+      }
+      # struct command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'entity.name.function.label.asar'
+          3: name: 'constant.numeric.hex.asar'
+        match: '\\b(struct)\\s+([a-zA-Z0-9_]+)\\s+(\\S+)\\b'
+        name: 'meta.struct.directive.asar'
+      }
+      # endstruct command
+      {
+        captures:
+          1: name: 'support.function.pseudo.asar'
+          2: name: 'support.function.pseudo.asar'
+          3: name: 'constant.numeric.decimal.asar'
+        match: '\\b(endstruct)\\s+(align)*\\s+(\\S+)*'
+        name: 'meta.struct.directive.asar'
+      }
+      # data control
+      {
+        match: '\\b(inc(bin|src)|(push|pull)(pc|base)|warnpc|skip|asar|org|rep|d[bdlw]|(ex)?(lo|hi)rom|(full)?sa1rom|(no|sfx)rom|function)\\b'
+        name: 'support.function.pseudo.asar'
+      }
+      # conditional control
+      {
+        match: '\\b((end)?if)\\b'
+        name: 'keyword.control.conditional.asar'
+      }
+      # macro control
+      # TODO: fix identifier
+      {
+        match: '\\b((end)?macro)\\b'
+        # name: 'support.function.pseudo.asar'
+        name: 'keyword.directive.macro.asar'
+      }
+      # operators
+      {
+        match: '[-+/*^><|#\\[\\]()=.!&]'
+        name: 'keyword.operator.asar'
+      }
+      # TODO: Add built-in functions
+    ]

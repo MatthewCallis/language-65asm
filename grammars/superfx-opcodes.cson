@@ -1,0 +1,29 @@
+# Opcodes for the SuperFX DSP used in some SNES cartridges
+
+scopeName: 'source.superfx-opcodes'
+
+patterns: [
+  # The SPC700 instruction set aliases
+  {
+    include: '#mnemonics-superfx'
+  }
+]
+
+# Respository starts here -----------------------------------------------------
+repository:
+
+  # SuperFX instruction set
+  'mnemonics-superfx':
+    patterns: [
+      # mnemonics
+      {
+        match:  '\\b(?i:ADD|ADC|ALT1|ALT2|ALT3|AND|ASR|BCC|BCS|BEQ|BGE|BIC|BLT|BMI|BNE|BPL|BRA|BVC|BVS|CACHE|CMODE|CMP|COLOR|DEC|DIV2|FMULT|FROM|GETB|GETBH|GETBL|GETBS|GETC|HIB|IBT|INC|IWT|JAL|JMP|LDB|LDW|LEA|LINK|LJMP|LM|LMS|LMULT|LOB|LOOP|LSR|MERGE|MOVE|MOVEB|MOVES|MOVEW|MULT|NOP|NOT|OR|PLOT|POP|PUSH|RAMB|RET|ROL|ROMB|ROR|RPIX|SBC|SBK|SEX|SM|SMS|STB|STOP|STW|SUB|SWAP|TO|UMULT|WITH|XOR)\\b'
+        name:   'keyword.mnemonic.superfx.superfx-opcodes'
+      }
+      # registers
+      {
+        match: '\\b(?i:R0|R1|R2|R3|R4|R5|R6|R7|R8|R9|R10|R11|R12|R13|R14|R15|SP|LR|PC|SFR|BRAMR|PBR|ROMBR|CFGR|SCBR|CLSR|SCMR|VCR|RAMBR|CBR)\\b'
+        name: 'support.function.pseudo.superfx-opcodes'
+        # name: 'storage.other.register.superfx-opcodes'
+      }
+    ]

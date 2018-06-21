@@ -1,65 +1,112 @@
-'fileTypes': []
-'foldingStartMarker': '/\\*\\*|\\{\\s*$'
-'foldingStopMarker': '\\*\\*/|^\\s*\\}'
-'name': '6502 Assembly (DASM)'
-'patterns': [
-  {
-    'match': '\\b(adc|and|asl|bit|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|sbc|sec|sed|sei|sta|stx|sty|tax|txa|tay|tya|tsx|txs)\\b'
-    'name': 'keyword'
-  }
-  {
-    'match': '\\b(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\b'
-    'name': 'keyword.control'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'punctuation.definition.comment'
-    'match': '(;).*$\\n?'
-    'name': 'comment.line.semicolon'
-  }
-  {
-    'match': '\\b(SET|WORD|BYTE|HEX)\\b'
-    'name': 'storage.type'
-  }
-  {
-    'match': '\\b(ALIGN)\\b'
-    'name': 'storage.modifier'
-  }
-  {
-    'match': '\\b(REPEAT|REPEND|MAC|ENDM|SUBROUTINE)\\b'
-    'name': 'support.function'
-  }
-  {
-    'match': '\\b(processor|org)\\b'
-    'name': 'constant.language'
-  }
-  {
-    'begin': '"'
-    'end': '"'
-    'name': 'string.quoted.double.untitled'
-    'patterns': [
+# Syntax highlighting for the DASM macro assembler
+
+scopeName: 'source.assembly.6502.dasm'
+fileTypes: []
+name: '6502 Assembly (DASM)'
+patterns: [
+  { include: 'source.6502-opcodes' }
+  { include: '#comments' }
+  { include: '#symbols' }
+  { include: '#directives' }
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
       {
-        'match': '\\\\.'
-        'name': 'constant.character.escape.untitled'
+        match: ';.*$'
+        name: 'comment.line.semicolon.dasm'
       }
     ]
-  }
-  {
-    'match': '^[A-Za-z_][A-Za-z0-9_]*'
-    'name': 'entity.name.label'
-  }
-  {
-    'match': '^\\.[A-Za-z_][A-Za-z0-9_]*'
-    'name': 'entity.name.label.local'
-  }
-  {
-    'match': '#?\\$[0-9a-fA-F]+'
-    'name': 'constant.numeric.hex'
-  }
-  {
-    'match': '{[0-9]+}'
-    'name': 'variable.parameter.macro'
-  }
-]
-'scopeName': 'source.assembly.6502.dasm'
+
+  # symbols
+  symbols:
+    patterns: [
+      # strings
+      {
+        begin: '"'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.dasm'
+        end: '"'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.dasm'
+        name: 'string.quoted.double.dasm'
+      }
+      # global labels
+      {
+        captures:
+          1:
+            name: 'entity.name.function.label.dasm'
+        match: '\\b([A-Za-z0-9_]+):'
+        name: 'meta.function.label.dasm'
+      }
+      # local labels
+      {
+        captures:
+          1:
+            name: 'entity.name.function.label.dasm'
+        match: '\\.\\b([A-Za-z0-9_]+):'
+        name: 'meta.function.label.dasm'
+      }
+      # absolut addressing/numbers
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.dasm'
+      }
+      # hex, prefixed with dollar sign($)
+      {
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
+        name: 'constant.numeric.hex.dasm'
+      }
+      # octal, prefixed with zero(0)
+      {
+        match: '-?\\b0[1-7]+\\b'
+        name: 'constant.numeric.octal.dasm'
+      }
+      # binary
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.65816-generic'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.65816-generic'
+      }
+    ]
+
+    # directives
+  directives:
+    patterns: [
+      # file and symbol control
+      {
+        match: '\\b(?i:seg(\\.u)?|include|incbin|incdir|hex|err|r?org|processor|echo|rend|align|subroutine)\\b'
+        name: 'support.function.pseudo.dasm'
+      }
+      # data control
+      {
+        match: '\\b(?i:d[csv](.bwl)?|hex|eq[um]|set|list\\s(on|off))\\b'
+        name: 'support.function.pseudo.dasm'
+      }
+      # data control II
+      {
+        match: '\\.\\b(?i:byte|word)\\b'
+        name: 'support.function.pseudo.dasm'
+      }
+      # Macro control
+      {
+        match:  '\\b(?i:mac|endm|mexit)\\b'
+        name:   'support.function.pseudo.acme'
+      }
+      # Conditional control
+      {
+        match:  '\\b(?i:ifn?const|if|else|e(nd)?if|repeat|repend)\\b'
+        name:   'keyword.control.conditional.acme'
+      }
+    ]

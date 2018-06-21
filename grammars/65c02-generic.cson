@@ -4,7 +4,7 @@ scopeName: 'source.assembly.6502.65c02-generic'
 fileTypes: []
 name: '6502 Assembly'
 patterns: [
-  { include: 'source.65c02-opcodes' }  # add basic 65816 instruction set, includes 6502 and 65c02 opcodes
+  { include: 'source.65c02-opcodes' }  # include 6502 and 65c02 opcodes
   { include: 'source.6502x-opcodes' }
   { include: '#comments' }
   { include: '#symbols' }
@@ -35,7 +35,7 @@ repository:
         endCaptures:
           0:
             name: 'punctuation.definition.string.end.65c02-generic'
-        name: 'string.quoted.double.assembly.65c02-generic'
+        name: 'string.quoted.double.65c02-generic'
       }
       # absolut address/number
       {
@@ -44,12 +44,12 @@ repository:
       }
       # hex, prefixed with ampersand($)
       {
-        match: '-?\\$[A-Fa-f0-9]+'
+        match: '-?\\$\\b[A-Fa-f0-9]+\\b'
         name: 'constant.numeric.hex.65c02-generic'
       }
       # hex, suffixed with h(h)
       {
-        match: '-?([0-9]+)h'
+        match: '-?([a-fA-F0-9]+)h'
         name: 'constant.numeric.hex.65c02-generic'
       }
       # binary
