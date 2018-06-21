@@ -1,6 +1,6 @@
 {
   "name": "language-65asm",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with extra support for various compilers.",
   "repository": "git@github.com:MatthewCallis/language-65asm.git",
   "license": "MIT",
