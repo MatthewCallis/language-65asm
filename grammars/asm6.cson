@@ -5,6 +5,7 @@ name: 'ASM6f (6502)'      # Name shown in Atom Editor grammar selection
 # File extensions associated with this grammar
 fileTypes: [
   's'
+  'asm'
 ]
 patterns: [
   { include: 'source.65c02-opcodes' }   # extend with 6502X opcodes
@@ -79,12 +80,12 @@ repository:
     patterns: [
       # ca65 pseudo variables
       {
-        match:  '(\\.)?\\b(?i:equ|include|incsrc|incbin|db|dw|byte|word|dcb|dcw|(dc\\.b)|(dc\\.w)|ignorenl|endinl|unstable|hunstable|inesprog|ineschr|inesmap|inesmir|nes2chrram|nes2prgram|nes2usb|nes2tv|nes2vs|nes2bram|nes2chrbram)\\b'
+        match:  '(\\.)?\\b(?i:equ|include|incsrc|(inc)?bin|db|dw|byte|word|dcb|dcw|(dc\\.b)|(dc\\.w)|ignorenl|endinl|unstable|hunstable|inesprog|ineschr|inesmap|inesmir|nes2chrram|nes2prgram|nes2usb|nes2tv|nes2vs|nes2bram|nes2chrbram)\\b'
         name:   'support.function.pseudo.cc65-directives'
       }
       # ca65 pseudo functions
       {
-        match:  '(\\.)?\\b(?i:dl|dh|hex|dsb|dsw|pad|org|align|fillvalue|base|if|elseif|else|endif|ifdef|ifndef|macro|endm|rept|endr|enum|ende|error)\\b'
+        match:  '(\\.)?\\b(?i:dl|dh|hex|(ds\\.?b)|(ds\\.?w)|pad|org|align|fillvalue|base|if|elseif|else|endif|ifdef|ifndef|macro|endm|rept|endr|enum|ende|error)\\b'
         name:   'support.function.pseudo.cc65-directives'
       }
       # address sizes, macpack packages
