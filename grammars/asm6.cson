@@ -1,7 +1,7 @@
 # Syntax Highlighting for the asm6 assembler
 
 scopeName: 'source.asm6'
-name: 'ASM6 (6502)'      # Name shown in Atom Editor grammar selection
+name: 'ASM6f (6502)'      # Name shown in Atom Editor grammar selection
 # File extensions associated with this grammar
 fileTypes: [
   's'
@@ -79,7 +79,7 @@ repository:
     patterns: [
       # ca65 pseudo variables
       {
-        match:  '(\\.)?\\b(?i:equ|include|incsrc|incbin|db|dw|byte|word|dcb|dcw|dc\\.b|dc\\.w)\\b'
+        match:  '(\\.)?\\b(?i:equ|include|incsrc|incbin|db|dw|byte|word|dcb|dcw|(dc\\.b)|(dc\\.w)|ignorenl|endinl|unstable|hunstable|inesprog|ineschr|inesmap|inesmir|nes2chrram|nes2prgram|nes2usb|nes2tv|nes2vs|nes2bram|nes2chrbram)\\b'
         name:   'support.function.pseudo.cc65-directives'
       }
       # ca65 pseudo functions
@@ -87,11 +87,6 @@ repository:
         match:  '(\\.)?\\b(?i:dl|dh|hex|dsb|dsw|pad|org|align|fillvalue|base|if|elseif|else|endif|ifdef|ifndef|macro|endm|rept|endr|enum|ende|error)\\b'
         name:   'support.function.pseudo.cc65-directives'
       }
-      # # CPU constants
-      # {
-      #   match:  '\\b(CPU_6502|CPU_65SC02|CPU_65C02|CPU_65816|CPU_SWEET16|CPU_HUC6280|CPU_ISET_6502|CPU_ISET_65SC02|CPU_ISET_65C02|CPU_ISET_65816|CPU_ISET_SWEET16|CPU_ISET_HUC6280|__APPLE2__|__APPLE2ENH__|__ATARI__|__ATARIXL__|__ATMOS__|__BBC__|__C128__|__C16__|__C64__|__CBM__|__CBM510__|__CBM610__|__GEOS__|__GEOS_APPLE__|__GEOS_CBM__|__LUNIX__|__LYNX__|__NES__|__PET__|__PLUS4__|__SIM6502__|__SIM65C02__|__SUPERVISION__|__VIC20__|VER_MAJOR|VER_MINOR)\\b'
-      #   name:   'constant.language.cc65-directives'
-      # }
       # address sizes, macpack packages
       # {
       #   match:  '\\b(?i:direct|zeropage|zp|absolute|abs|near|far|long|dword|atari|cbm|cpu|generic|longbranch)\\b'
@@ -99,12 +94,12 @@ repository:
       # }
       # Operators
       {
-        match:  '!|&|&&|\\^|\\*|\\/|\\-|\\+|~|=|<=|>=|<<|>>|<>|<|>|\\||\\|\\|'
+        match:  '!|&|&&|\\^|\\*|\\/|\\-|\\+|~|=|<=|>=|<<|>>|<>|<|>|\\||\\|\\|\\%'
         name:   'keyword.operator.cc65-directives'
       }
-      # Operators II
+      # Operators II/undocumented opcodes
       {
-        match:  '(\\.)\\b(?i:and|(bit)?(and|not|or|xor)|mod|shl|shr)\\b'
+        match:  '(\\.)\\b(?i:slo|rla|sre|rra|sax|lax|dcp|isc|anc|alr|arr|axs|las|ahx|shy|shx|tas|xaa)\\b'
         name:   'keyword.operator.cc65-directives'
       }
     ]
