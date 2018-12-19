@@ -1,3 +1,7 @@
+# v10.0.0
+
+* Add support for asm6 assembler
+
 # v9.0.0
 
 Added https://github.com/georgjz as a collaborator 🎉
