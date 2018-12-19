@@ -1,0 +1,106 @@
+# Syntax Highlighting for the asm6 assembler
+
+scopeName: 'source.asm6'
+name: 'ASM6f (6502)'      # Name shown in Atom Editor grammar selection
+# File extensions associated with this grammar
+fileTypes: [
+  's'
+  'asm'
+]
+patterns: [
+  { include: 'source.65c02-opcodes' }   # extend with 6502X opcodes
+  { include: 'source.6502x-opcodes' }   # extend with 6502X opcodes
+  { include: '#comments' }  # comments
+  { include: '#symbols' }   # symbols, constants, numbers
+  { include: '#directives' } # cc65 assembler directives
+]
+
+# Repository starts here ------------------------------------------------------
+repository:
+
+  # comments
+  comments:
+    patterns: [
+      # semicolon comments
+      {
+        match:  ';.*$'
+        name:   'comment.line.semicolon.cc65-directives'
+      }
+    ]
+
+  # symbols
+  symbols:
+    patterns: [
+      # strings
+      {
+        begin: '[\"\']'
+        beginCaptures:
+          0:
+            name: 'punctuation.definition.string.begin.cc65-directives'
+        end: '[\"\']'
+        endCaptures:
+          0:
+            name: 'punctuation.definition.string.end.cc65-directives'
+        name: 'string.quoted.double.cc65-directives'
+      }
+      # absolut addressing/numbers
+      {
+        match: '\\#(\'.\'|[^\\s\']+)'
+        name: 'constant.numeric.hex.cc65-directives'
+      }
+      # hex, prefixed with dollar sign($)
+      {
+        match: '-?\\$\\b[a-fA-F0-9]+\\b'
+        name: 'constant.numeric.hex.cc65-directives'
+      }
+      # hex, suffixed with h(h)
+      {
+        match: '-?\\b([a-fA-F0-9]+)h\\b'
+        name: 'constant.numeric.hex.cc65-directives'
+      }
+      # binary prefixed with %
+      {
+        match: '%[01]+'
+        name: 'constant.numeric.binary.cc65-directives'
+      }
+      # binary suffixed with b
+      {
+        match: '[01]+[bB]'
+        name: 'constant.numeric.binary.cc65-directives'
+      }
+      # decimal
+      {
+        match: '\\b([0-9]+)\\b'
+        name: 'constant.numeric.decimal.cc65-directives'
+      }
+    ]
+
+  # assembler directives
+  directives:
+    patterns: [
+      # ca65 pseudo variables
+      {
+        match:  '(\\.)?\\b(?i:equ|include|incsrc|(inc)?bin|db|dw|byte|word|dcb|dcw|(dc\\.b)|(dc\\.w)|ignorenl|endinl|unstable|hunstable|inesprog|ineschr|inesmap|inesmir|nes2chrram|nes2prgram|nes2usb|nes2tv|nes2vs|nes2bram|nes2chrbram)\\b'
+        name:   'support.function.pseudo.cc65-directives'
+      }
+      # ca65 pseudo functions
+      {
+        match:  '(\\.)?\\b(?i:dl|dh|hex|(ds\\.?b)|(ds\\.?w)|pad|org|align|fillvalue|base|if|elseif|else|endif|ifdef|ifndef|macro|endm|rept|endr|enum|ende|error)\\b'
+        name:   'support.function.pseudo.cc65-directives'
+      }
+      # address sizes, macpack packages
+      # {
+      #   match:  '\\b(?i:direct|zeropage|zp|absolute|abs|near|far|long|dword|atari|cbm|cpu|generic|longbranch)\\b'
+      #   name:   'constant.language.cc65-directives'
+      # }
+      # Operators
+      {
+        match:  '!|&|&&|\\^|\\*|\\/|\\-|\\+|~|=|<=|>=|<<|>>|<>|<|>|\\||\\|\\|\\%'
+        name:   'keyword.operator.cc65-directives'
+      }
+      # Operators II/undocumented opcodes
+      {
+        match:  '(\\.)\\b(?i:slo|rla|sre|rra|sax|lax|dcp|isc|anc|alr|arr|axs|las|ahx|shy|shx|tas|xaa)\\b'
+        name:   'keyword.operator.cc65-directives'
+      }
+    ]
