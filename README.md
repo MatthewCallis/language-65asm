@@ -14,6 +14,7 @@ Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with ex
  - [ORCA/M](http://www.byteworks.us/Byte_Works/Products.html)
  - [WLA-DX](http://www.villehelin.com/wla.html)
  - [WTCTools by Western Design Center](http://westerndesigncenter.com/wdc/tools.cfm)
+ - [Kick Assembler](http://theweb.dk/KickAssembler/Main.html#frontpage)
 
 Originally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)
 from the various other TextMate bundles:
@@ -56,3 +57,4 @@ See last line in grammar files for names.
 - [ARM9](https://github.com/ARM9)
 - [georgjz](https://github.com/georgjz)
 - [GoDot](http://www.godot64.de/)
+- [NotArtyom](https://github.com/ProbablyNotArtyom)
