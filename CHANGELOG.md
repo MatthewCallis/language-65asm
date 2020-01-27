@@ -1,4 +1,4 @@
-# v10.1.0
+# v10.4.0
 
 * Fix operator regex for ACME grammar (again) [#17](https://github.com/MatthewCallis/language-65asm/pull/17)
 
