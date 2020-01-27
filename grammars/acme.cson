@@ -124,8 +124,8 @@ repository:
       }
       # Operators
       {
-        match: '\!|\+|\-|\/|\|<<|>>|&|\||\^|=|<|>|\:'
-        name:   'keyword.operator'
+        match: '\\!|\\+|\\-|\\/|\\*|<<|>>|&|\\||\\^|=|<|>|\\:'
+        name:   'keyword.operator.acme'
       }
       # Operators II
       {
