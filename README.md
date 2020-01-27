@@ -57,4 +57,5 @@ See last line in grammar files for names.
 - [ARM9](https://github.com/ARM9)
 - [georgjz](https://github.com/georgjz)
 - [GoDot](http://www.godot64.de/)
-- [NotArtyom](https://github.com/ProbablyNotArtyom)
+- [Carson Herrington](https://github.com/ProbablyNotArtyom)
+- [Michael Lass](https://github.com/michaellass)
