@@ -1,4 +1,4 @@
-# Syntax Highlighting for the cc65 toolchain ans 6502 support
+# Syntax Highlighting for the cc65 toolchain and 6502 support
 
 scopeName: 'source.assembly.6502.cc65-toolchain'
 name: '6502 Assembly (cc65)'      # Name shown in Atom Editor grammar selection
