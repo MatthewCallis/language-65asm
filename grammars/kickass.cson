@@ -36,8 +36,12 @@ repository:
 			# ===============================================================
 			# Assembler symbols
 			{	# Labels
+				match: '^\\s*[a-zA-Z_][a-zA-Z0-9_]*:'
 				name: 'entity.name.function.kickass'
-				match: '^\\s*[!a-zA-Z_][a-zA-Z0-9_]*:'
+			}
+			{	# Local labels
+				match: '!(:|[\\+\\-]+)'
+				name: 'entity.name.function.kickass'
 			}
 			{	# Variable functions, like var.getValue()
 				match: '(\\w+(?=\\())'
@@ -51,9 +55,9 @@ repository:
 				name: 'string.char.kickass'
 			}
 			{	# Strings
-				name: 'string.quoted.kickass'
 				begin: '"'
 				end: '"'
+				name: 'string.quoted.kickass'
 			}
 
 			{	# Hex numbers
@@ -62,27 +66,22 @@ repository:
 			}
 			{	# Octals
 				match: '@([0-7]+)\\b'
-				name: 'constant.numeric.octal.merlin'
+				name: 'constant.numeric.octal.kickass'
 			}
 			{	# Binary numbers
 				match: '%[01]+'
-				name: 'constant.numeric.binary.merlin'
+				name: 'constant.numeric.binary.kickass'
 			}
 			{	# Decimal numbers
 				match: '\\b([0-9]+)\\b'
-				name: 'constant.numeric.decimal.merlin'
-			}
-
-			{	# Operators
-				match: '[-+/*^><|#\\[\\](),=.!&]'
-				name: 'keyword.operator.kickass'
+				name: 'constant.numeric.decimal.kickass'
 			}
 			{	# Immediate values
-				match: '\\#(\'.\'|[^\\s\']+)'
+				match: '\\#([^\\s]+)'
 				name: 'constant.numeric.hex.kickass'
 			}
 			{	# Constants
-				match: '\\b([_A-Z]+)\\b'
+				match: '\\b([_A-Z][_A-Z0-9]+)\\b'
 				name: 'variable.kickass'
 			}
 		]
@@ -139,7 +138,7 @@ repository:
 			# ===============================================================
 			# Variables and Macros
 			{
-				match: '(\\.)(var|eval|const|label)(\\s*[a-zA-Z0-9_]*)(\\s*=)'
+				match: '(\\.)(var|eval|const|label)(\\s*[a-zA-Z0-9_]*)(\\s*=)?'
 				captures:
 					1: name: 'keyword.control.directive.kickass'
 					2: name: 'keyword.control.directive.kickass'
@@ -147,11 +146,10 @@ repository:
 					4: name: 'keyword.operator.kickass'
 			}
 			{
-				match: '(\\.)(var|eval|const|label)(\\s*[a-zA-Z0-9_]*)'
+				match: '(?:\\()(var|eval|const|label)(?=\\s*[a-zA-Z0-9_]*)'
 				captures:
 					1: name: 'keyword.control.directive.kickass'
-					2: name: 'keyword.control.directive.kickass'
-					3: name: 'support.function.kickass'
+					2: name: 'support.function.kickass'
 			}
 			{
 				match: '(\\.)(function|macro)([\\s\\w_.]*)(\\()([^)]*)(\\))'
